@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chambita</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.04);
+      color: white;
+      font-family: system-ui, -apple-system, sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      padding: 30px;
+      border-radius: 24px;
+      background: radial-gradient(circle at top, #ba9ff5, #420adc 60%, #37028c);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+
+    img {
+      width: 350px;
+      filter: drop-shadow(0 10px 30px rgba(236,72,153,0.4));
+    }
+
+    h1 {
+      font-size: 30px;
+      margin: 0;
+      font-weight: 800;
+      background: linear-gradient(90deg,#fb923c,#f472b6,#d946ef);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    p {
+      opacity: 0.7;
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #f472b6;
+      animation: blink 1.5s infinite;
+      margin-top: 4px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.2 }
+      50% { opacity: 1 }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="/chambita_logo.png" alt="Chambita logo" />
+    <h1>Trabajo cerca de ti</h1>
+    <p>Próximamente</p>
+    <div class="dot"></div>
+  </div>
+
+</body>
+</html>

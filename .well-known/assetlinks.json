@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.chambita",
+    "sha256_cert_fingerprints": [
+      "EE:A0:BC:0F:96:D6:C2:A9:CB:1E:21:38:78:7A:DA:BD:C1:07:EF:8B:B7:1B:CB:D1:37:8A:23:4F:C9:26:3D:8F"
+    ]
+  }
+}]
