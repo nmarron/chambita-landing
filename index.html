@@ -3,77 +3,778 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chambita</title>
+  <title>Chambita — Encuentra trabajo cerca de ti</title>
+  <meta name="description" content="Chambita conecta trabajadores independientes con quienes necesitan una chamba en tu ciudad. Plomeros, electricistas, carpinteros y más." />
   <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255,255,255,0.04);
-      color: white;
-      font-family: system-ui, -apple-system, sans-serif;
-      text-align: center;
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=DM+Mono:wght@400;500&display=swap');
+
+    :root {
+      --bg:       #ffffff;
+      --surface:  #f7f7f9;
+      --border:   #e8e8ee;
+      --text:     #0f0f14;
+      --muted:    #6b6b7a;
+      --faint:    #b4b4c4;
+      --primary:  #5d02ef;
+      --primary-light: #f0e8ff;
+      --orange:   #fb923c;
+      --pink:     #f472b6;
+      --sans:     'DM Sans', system-ui, sans-serif;
+      --mono:     'DM Mono', monospace;
     }
 
-    .container {
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+    }
+
+    .nav-logo span {
+      font-size: 17px;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--primary), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--primary);
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      transition: opacity 0.15s !important;
+    }
+
+    .nav-cta:hover { opacity: 0.88; color: #fff !important; }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 5px;
-      padding: 30px;
-      border-radius: 24px;
-      background: radial-gradient(circle at top, #ba9ff5, #420adc 60%, #37028c);
-      border: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
     }
 
-    img {
-      width: 350px;
-      filter: drop-shadow(0 10px 30px rgba(236,72,153,0.4));
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% -10%, rgba(93,2,239,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 80% 60%, rgba(244,114,182,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 20% 70%, rgba(251,146,60,0.05) 0%, transparent 60%);
+      pointer-events: none;
     }
 
-    h1 {
-      font-size: 30px;
-      margin: 0;
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      border: 1px solid rgba(93,2,239,0.15);
+    }
+
+    .hero-badge span { font-size: 15px; }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 72px);
       font-weight: 800;
-      background: linear-gradient(90deg,#fb923c,#f472b6,#d946ef);
+      letter-spacing: -2px;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 24px;
+      max-width: 780px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--primary), var(--pink));
       -webkit-background-clip: text;
-      color: transparent;
+      -webkit-text-fill-color: transparent;
     }
 
-    p {
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 520px;
+      margin-bottom: 48px;
+      font-weight: 400;
+    }
+
+    /* ── Store buttons ── */
+    .store-buttons {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .store-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--text);
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 12px;
+      transition: opacity 0.15s, transform 0.1s;
+      min-width: 160px;
+    }
+
+    .store-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+    .store-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+    .store-btn-text { display: flex; flex-direction: column; }
+
+    .store-btn-sub {
+      font-size: 10px;
       opacity: 0.7;
-      margin: 0;
-      font-size: 16px;
+      line-height: 1;
+      margin-bottom: 2px;
+      font-weight: 400;
     }
 
-    .dot {
+    .store-btn-name {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .store-note {
+      font-size: 13px;
+      color: var(--faint);
+      font-family: var(--mono);
+    }
+
+    /* ── Cities ── */
+    .cities {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 48px;
+    }
+
+    .cities-label {
+      font-size: 13px;
+      color: var(--faint);
+      font-family: var(--mono);
+      margin-right: 4px;
+    }
+
+    .city-pill {
+      font-size: 13px;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-weight: 500;
+    }
+
+    /* ── Section base ── */
+    section {
+      padding: 100px 24px;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 520px;
+    }
+
+    /* ── How it works ── */
+    .how {
+      background: var(--surface);
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2px;
+      margin-top: 56px;
+    }
+
+    .how-card {
+      background: var(--bg);
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .how-card:first-child { border-radius: 16px 0 0 16px; }
+    .how-card:last-child  { border-radius: 0 16px 16px 0; }
+
+    .how-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--primary);
+      letter-spacing: 1px;
+      background: var(--primary-light);
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+    }
+
+    .how-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text);
+    }
+
+    .how-card p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── For who ── */
+    .forwho-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .forwho-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .forwho-card.accent {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .forwho-icon {
+      font-size: 36px;
+    }
+
+    .forwho-card h3 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+
+    .forwho-card.accent h3 { color: #fff; }
+
+    .forwho-card p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .forwho-card.accent p { color: rgba(255,255,255,0.75); }
+
+    .forwho-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .forwho-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .forwho-card.accent .forwho-list li { color: rgba(255,255,255,0.85); }
+
+    .forwho-list li::before {
+      content: '';
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #f472b6;
-      animation: blink 1.5s infinite;
-      margin-top: 4px;
+      background: var(--primary);
+      flex-shrink: 0;
     }
 
-    @keyframes blink {
-      0%, 100% { opacity: 0.2 }
-      50% { opacity: 1 }
+    .forwho-card.accent .forwho-list li::before {
+      background: rgba(255,255,255,0.5);
     }
 
+    /* ── Features ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 56px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .feature-icon {
+      font-size: 28px;
+    }
+
+    .feature-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── Trades ── */
+    .trades {
+      background: var(--surface);
+    }
+
+    .trades-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 40px;
+    }
+
+    .trade-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      transition: border-color 0.15s;
+    }
+
+    .trade-pill:hover { border-color: var(--primary); }
+
+    .trade-pill span { font-size: 18px; }
+
+    /* ── CTA section ── */
+    .cta-section {
+      text-align: center;
+      background: var(--text);
+      color: #fff;
+    }
+
+    .cta-section .section-label { color: rgba(255,255,255,0.4); }
+    .cta-section .section-title { color: #fff; }
+    .cta-section .section-sub   { color: rgba(255,255,255,0.6); margin: 0 auto 48px; }
+
+    .cta-section .store-btn {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .cta-section .store-btn:hover { background: rgba(255,255,255,0.18); }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-logo img {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+    }
+
+    .footer-logo span {
+      font-size: 15px;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--primary), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--faint);
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: var(--muted); }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--faint);
+      font-family: var(--mono);
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .forwho-grid { grid-template-columns: 1fr; }
+      .how-card:first-child { border-radius: 16px 16px 0 0; }
+      .how-card:last-child  { border-radius: 0 0 16px 16px; }
+      section { padding: 72px 20px; }
+      .forwho-card { padding: 28px 24px; }
+    }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <img src="/chambita_logo.png" alt="Chambita logo" />
-    <h1>Trabajo cerca de ti</h1>
-    <p>Próximamente</p>
-    <div class="dot"></div>
-  </div>
+  <!-- Nav -->
+  <nav>
+    <div class="nav-logo">
+      <img src="/chambita_logo.png" alt="Chambita" />
+      <span>Chambita</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#como-funciona">Cómo funciona</a></li>
+      <li><a href="#para-quien">Para quién</a></li>
+      <li><a href="#oficios">Oficios</a></li>
+      <li><a href="#descargar" class="nav-cta">Descargar</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-badge"><span>🔧</span> Ya disponible en Ensenada</div>
+    <h1>La chamba está<br /><em>cerca de ti</em></h1>
+    <p class="hero-sub">
+      Chambita conecta trabajadores independientes con quienes necesitan un servicio en tu ciudad. Rápido, directo y sin complicaciones.
+    </p>
+    <div class="store-buttons">
+      <a href="#descargar" class="store-btn">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <div class="store-btn-text">
+          <span class="store-btn-sub">Descarga en el</span>
+          <span class="store-btn-name">App Store</span>
+        </div>
+      </a>
+      <a href="#descargar" class="store-btn">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76c.3.17.64.22.99.14l12.6-7.28-2.75-2.75-10.84 9.89zM.23 1.46C.09 1.76 0 2.1 0 2.5v19c0 .4.09.74.23 1.04l.07.07 10.64-10.64v-.25L.3 1.39l-.07.07zM20.54 10.27l-2.88-1.66-3.08 3.08 3.08 3.08 2.9-1.67c.83-.48.83-1.25-.02-1.83zM3.18.24l12.6 7.28-2.75 2.75L2.19.38C2.52.17 2.9.1 3.18.24z"/></svg>
+        <div class="store-btn-text">
+          <span class="store-btn-sub">Disponible en</span>
+          <span class="store-btn-name">Google Play</span>
+        </div>
+      </a>
+    </div>
+    <p class="store-note">iOS y Android · Gratis durante el lanzamiento</p>
+    <div class="cities">
+      <span class="cities-label">Disponible en</span>
+      <span class="city-pill">Ensenada</span>
+      <span class="city-pill">Tijuana</span>
+      <span class="city-pill">Mexicali</span>
+      <span class="city-pill">Rosarito</span>
+      <span class="city-pill">+ más ciudades pronto</span>
+    </div>
+  </section>
+
+  <!-- Cómo funciona -->
+  <section class="how" id="como-funciona">
+    <div class="container">
+      <div class="section-label">Cómo funciona</div>
+      <h2 class="section-title">Tres pasos y listo</h2>
+      <p class="section-sub">Sin citas, sin esperas, sin intermediarios. Directo al trabajador.</p>
+      <div class="how-grid">
+        <div class="how-card">
+          <div class="how-num">01</div>
+          <h3>Publica tu chamba</h3>
+          <p>Describe lo que necesitas — plomería, electricidad, carpintería, lo que sea. Tarda menos de dos minutos.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-num">02</div>
+          <h3>Recibe interesados</h3>
+          <p>Trabajadores de tu ciudad ven tu publicación y aplican. Ves sus perfiles, calificaciones y tarifas.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-num">03</div>
+          <h3>Contrata y califica</h3>
+          <p>Habla directo por chat o WhatsApp, asigna el trabajo y deja una reseña cuando termines.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-num">04</div>
+          <h3>Si eres trabajador</h3>
+          <p>Crea tu perfil con tu oficio y ciudad. Recibe notificaciones de nuevas chambas que te interesan y aplica con un toque.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Para quién -->
+  <section id="para-quien">
+    <div class="container">
+      <div class="section-label">Para quién es</div>
+      <h2 class="section-title">Dos lados,<br />una plataforma</h2>
+      <div class="forwho-grid">
+        <div class="forwho-card accent">
+          <div class="forwho-icon">🔧</div>
+          <h3>Para trabajadores</h3>
+          <p>Encuentra chambas cerca de ti sin intermediarios. Construye tu reputación con reseñas reales.</p>
+          <ul class="forwho-list">
+            <li>Perfil profesional con tus oficios y tarifa</li>
+            <li>Notificaciones de chambas nuevas en tu ciudad</li>
+            <li>Chat directo con el empleador</li>
+            <li>Verificación de identidad para más confianza</li>
+            <li>Calificaciones que construyen tu reputación</li>
+          </ul>
+        </div>
+        <div class="forwho-card">
+          <div class="forwho-icon">🏠</div>
+          <h3>Para quien necesita ayuda</h3>
+          <p>Publica en minutos y recibe interesados de tu ciudad. Sin llamadas, sin intermediarios.</p>
+          <ul class="forwho-list">
+            <li>Publica tu chamba en menos de 2 minutos</li>
+            <li>Ve perfiles, tarifas y calificaciones</li>
+            <li>Contacto directo por chat o WhatsApp</li>
+            <li>Directorio de negocios y trabajadores verificados</li>
+            <li>Califica al trabajador al terminar</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Oficios -->
+  <section class="trades" id="oficios">
+    <div class="container">
+      <div class="section-label">Oficios</div>
+      <h2 class="section-title">Lo que sea<br />que necesites</h2>
+      <p class="section-sub">Desde plomería hasta diseño gráfico. Si es un oficio, está en Chambita.</p>
+      <div class="trades-grid">
+        <div class="trade-pill"><span>🔧</span> Plomería</div>
+        <div class="trade-pill"><span>⚡</span> Electricidad</div>
+        <div class="trade-pill"><span>🪵</span> Carpintería</div>
+        <div class="trade-pill"><span>🎨</span> Pintura</div>
+        <div class="trade-pill"><span>❄️</span> Aire acondicionado</div>
+        <div class="trade-pill"><span>🧹</span> Limpieza</div>
+        <div class="trade-pill"><span>🚗</span> Mecánica</div>
+        <div class="trade-pill"><span>🌿</span> Jardinería</div>
+        <div class="trade-pill"><span>📦</span> Mudanzas</div>
+        <div class="trade-pill"><span>🔒</span> Cerrajería</div>
+        <div class="trade-pill"><span>🏗️</span> Albañilería</div>
+        <div class="trade-pill"><span>💻</span> Computadoras</div>
+        <div class="trade-pill"><span>📸</span> Fotografía</div>
+        <div class="trade-pill"><span>🎓</span> Clases</div>
+        <div class="trade-pill"><span>🐾</span> Cuidado de mascotas</div>
+        <div class="trade-pill"><span>✂️</span> Belleza y estética</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section>
+    <div class="container">
+      <div class="section-label">Por qué Chambita</div>
+      <h2 class="section-title">Hecho para<br />la frontera</h2>
+      <p class="section-sub">No somos un directorio genérico. Chambita está pensado para las ciudades de México.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📍</div>
+          <h3>Por ciudad y oficio</h3>
+          <p>Solo ves chambas y trabajadores de tu ciudad. Sin ruido, sin resultados de otros estados.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✅</div>
+          <h3>Verificación de identidad</h3>
+          <p>Los trabajadores pueden verificar su identidad con INE y selfie. Sabes con quién tratas.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💬</div>
+          <h3>Chat directo</h3>
+          <p>Habla con el trabajador desde la app. Sin dar tu número hasta que quieras.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⭐</div>
+          <h3>Reseñas reales</h3>
+          <p>Las calificaciones son de empleos reales completados en la plataforma. Nada inventado.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏢</div>
+          <h3>Directorio de negocios</h3>
+          <p>Empresas y locales con perfil completo, fotos, dirección y reseñas. Como Airbnb pero para servicios.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3>Gratis para empezar</h3>
+          <p>Durante el lanzamiento, publica tu chamba sin costo. Sin tarjeta requerida para comenzar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section class="cta-section" id="descargar">
+    <div class="container">
+      <div class="section-label">Descarga la app</div>
+      <h2 class="section-title">Empieza hoy,<br />gratis</h2>
+      <p class="section-sub">Disponible para iPhone y Android. Ya hay chambas esperándote en tu ciudad.</p>
+      <div class="store-buttons">
+        <a href="#" class="store-btn">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div class="store-btn-text">
+            <span class="store-btn-sub">Descarga en el</span>
+            <span class="store-btn-name">App Store</span>
+          </div>
+        </a>
+        <a href="#" class="store-btn">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76c.3.17.64.22.99.14l12.6-7.28-2.75-2.75-10.84 9.89zM.23 1.46C.09 1.76 0 2.1 0 2.5v19c0 .4.09.74.23 1.04l.07.07 10.64-10.64v-.25L.3 1.39l-.07.07zM20.54 10.27l-2.88-1.66-3.08 3.08 3.08 3.08 2.9-1.67c.83-.48.83-1.25-.02-1.83zM3.18.24l12.6 7.28-2.75 2.75L2.19.38C2.52.17 2.9.1 3.18.24z"/></svg>
+          <div class="store-btn-text">
+            <span class="store-btn-sub">Disponible en</span>
+            <span class="store-btn-name">Google Play</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="/chambita_logo.png" alt="Chambita" />
+        <span>Chambita</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="/privacidad">Privacidad</a></li>
+        <li><a href="/eliminacion-datos">Eliminación de datos</a></li>
+        <li><a href="mailto:dev@chambita.app">Contacto</a></li>
+      </ul>
+      <p class="footer-copy">© 2026 Chambita · Ensenada, BC</p>
+    </div>
+  </footer>
 
 </body>
 </html>
