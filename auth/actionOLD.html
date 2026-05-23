@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chambita</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0a0a0a;
+      color: white;
+      font-family: system-ui, -apple-system, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 40px 32px;
+      border-radius: 24px;
+      background: radial-gradient(circle at top, #ba9ff5, #420adc 60%, #37028c);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      max-width: 420px;
+      width: 100%;
+    }
+
+    img {
+      width: 200px;
+      filter: drop-shadow(0 10px 30px rgba(236,72,153,0.4));
+    }
+
+    h1 {
+      font-size: 22px;
+      margin: 0;
+      font-weight: 800;
+      background: linear-gradient(90deg, #fb923c, #f472b6, #d946ef);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    p {
+      opacity: 0.8;
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid rgba(255,255,255,0.2);
+      border-top-color: #f472b6;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .icon {
+      font-size: 48px;
+      margin: 4px 0;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 16px;
+      outline: none;
+      margin-top: 4px;
+    }
+
+    input[type="password"]::placeholder {
+      color: rgba(255,255,255,0.4);
+    }
+
+    input[type="password"]:focus {
+      border-color: #f472b6;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(90deg, #fb923c, #d946ef);
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 4px;
+      transition: opacity 0.2s;
+    }
+
+    button:hover { opacity: 0.9; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .error {
+      color: #fca5a5;
+      font-size: 13px;
+      margin: 0;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="app">
+    <img src="/chambita_logo.png" alt="Chambita logo" />
+    <div class="spinner"></div>
+    <p>Procesando...</p>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+    import {
+      getAuth,
+      applyActionCode,
+      verifyPasswordResetCode,
+      confirmPasswordReset,
+      checkActionCode,
+    } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+
+    const app = initializeApp({
+      apiKey:     'AIzaSyB7RBqbr0LK8EXJNgO6JENfisjE38wFxX0',
+      authDomain: 'chambita-7774d.firebaseapp.com',
+      projectId:  'chambita-7774d',
+    });
+
+    const auth = getAuth(app);
+    const params = new URLSearchParams(window.location.search);
+    const mode    = params.get('mode');
+    const oobCode = params.get('oobCode');
+    const appEl   = document.getElementById('app');
+
+    function render(icon, title, body, extra = '') {
+      appEl.innerHTML = `
+        <img src="/chambita_logo.png" alt="Chambita logo" />
+        <div class="icon">${icon}</div>
+        <h1>${title}</h1>
+        <p>${body}</p>
+        ${extra}
+      `;
+    }
+
+    function renderError(msg) {
+      render('❌', 'Algo salió mal', msg);
+    }
+
+    if (!mode || !oobCode) {
+      renderError('El enlace no es válido o ya expiró.');
+    } else if (mode === 'verifyEmail') {
+      applyActionCode(auth, oobCode)
+        .then(() => render('✅', '¡Email verificado!', 'Tu dirección de correo ha sido verificada correctamente. Ya puedes usar Chambita.'))
+        .catch(() => renderError('El enlace de verificación no es válido o ya expiró. Solicita uno nuevo desde la app.'));
+
+    } else if (mode === 'verifyAndChangeEmail') {
+      applyActionCode(auth, oobCode)
+        .then(() => render('✅', '¡Email actualizado!', 'Tu dirección de correo ha sido cambiada correctamente.'))
+        .catch(() => renderError('El enlace no es válido o ya expiró. Solicita el cambio de email nuevamente desde la app.'));
+
+    } else if (mode === 'resetPassword') {
+      verifyPasswordResetCode(auth, oobCode)
+        .then(() => {
+          appEl.innerHTML = `
+            <img src="/chambita_logo.png" alt="Chambita logo" />
+            <h1>Nueva contraseña</h1>
+            <p>Ingresa tu nueva contraseña para Chambita.</p>
+            <input type="password" id="pwd" placeholder="Nueva contraseña" minlength="6" />
+            <input type="password" id="pwd2" placeholder="Confirmar contraseña" minlength="6" />
+            <p class="error" id="err"></p>
+            <button id="btn" onclick="handleReset()">Cambiar contraseña</button>
+          `;
+        })
+        .catch(() => renderError('El enlace para restablecer tu contraseña no es válido o ya expiró. Solicita uno nuevo desde la app.'));
+
+    } else {
+      renderError('Acción no reconocida.');
+    }
+
+    window.handleReset = () => {
+      const pwd  = document.getElementById('pwd').value;
+      const pwd2 = document.getElementById('pwd2').value;
+      const err  = document.getElementById('err');
+      const btn  = document.getElementById('btn');
+
+      if (pwd.length < 6) { err.textContent = 'La contraseña debe tener al menos 6 caracteres.'; return; }
+      if (pwd !== pwd2)   { err.textContent = 'Las contraseñas no coinciden.'; return; }
+
+      btn.disabled = true;
+      btn.textContent = 'Cambiando...';
+
+      confirmPasswordReset(auth, oobCode, pwd)
+        .then(() => render('✅', '¡Contraseña actualizada!', 'Tu contraseña ha sido cambiada correctamente. Ya puedes iniciar sesión en Chambita.'))
+        .catch(() => {
+          err.textContent = 'Error al cambiar la contraseña. Intenta de nuevo.';
+          btn.disabled = false;
+          btn.textContent = 'Cambiar contraseña';
+        });
+    };
+  </script>
+</body>
+</html>
