@@ -5,150 +5,611 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Política de Privacidad — Chambita</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
+
+    :root {
+      --bg:        #0c0c0e;
+      --surface:   #141416;
+      --border:    rgba(255,255,255,0.07);
+      --text:      #e2e2e5;
+      --muted:     #888892;
+      --faint:     #444450;
+      --accent:    #fb923c;
+      --accent2:   #f472b6;
+      --accent3:   #a78bfa;
+      --mono:      'DM Mono', monospace;
+      --sans:      'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background: #0a0a0a;
-      color: #e5e5e5;
-      line-height: 1.7;
-      padding: 40px 20px 80px;
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .container {
-      max-width: 720px;
+    /* ── Layout ── */
+    .page {
+      max-width: 760px;
       margin: 0 auto;
+      padding: 0 24px 100px;
     }
 
-    .header {
+    /* ── Header ── */
+    .hero {
+      padding: 64px 0 56px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 56px;
+    }
+
+    .wordmark {
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin-bottom: 48px;
+      gap: 12px;
+      margin-bottom: 32px;
     }
 
-    .header img {
-      width: 52px;
+    .wordmark-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #fb923c 0%, #f472b6 60%, #a78bfa 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
     }
 
-    .header-text h1 {
-      font-size: 22px;
-      font-weight: 800;
-      background: linear-gradient(90deg, #fb923c, #f472b6, #d946ef);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .header-text p {
-      font-size: 13px;
-      color: #888;
-      margin-top: 2px;
-    }
-
-    h2 {
-      font-size: 17px;
+    .wordmark-name {
+      font-size: 18px;
       font-weight: 700;
-      color: #f4f4f4;
-      margin: 36px 0 12px;
+      letter-spacing: -0.3px;
+      background: linear-gradient(90deg, #fb923c, #f472b6, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    p, li {
-      font-size: 15px;
-      color: #aaa;
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      line-height: 1.2;
+      color: #f4f4f6;
+      margin-bottom: 16px;
     }
 
-    ul {
-      padding-left: 20px;
+    .hero p {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 540px;
+    }
+
+    .meta-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+    }
+
+    /* ── TOC ── */
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-bottom: 56px;
+    }
+
+    .toc-title {
+      font-size: 11px;
+      font-family: var(--mono);
+      letter-spacing: 1.5px;
+      color: var(--faint);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .toc ol {
+      list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      margin-top: 8px;
+      gap: 2px;
+    }
+
+    .toc ol li a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 7px 0;
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+      border-bottom: 1px solid transparent;
+    }
+
+    .toc ol li a:hover { color: var(--text); }
+
+    .toc-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--faint);
+      width: 20px;
+      flex-shrink: 0;
+    }
+
+    /* ── Sections ── */
+    .section {
+      margin-bottom: 52px;
+      scroll-margin-top: 32px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .section-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--faint);
+      padding-top: 6px;
+      flex-shrink: 0;
+      width: 20px;
+    }
+
+    .section h2 {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: #f4f4f6;
+    }
+
+    .section p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    /* ── Lists ── */
+    .data-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .data-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .data-list li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 9px;
+      flex-shrink: 0;
+    }
+
+    /* ── Third party table ── */
+    .providers {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-top: 16px;
+    }
+
+    .provider-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 16px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      transition: background 0.15s;
+    }
+
+    .provider-row:hover { background: var(--surface); }
+
+    .provider-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .provider-role {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .providers-header {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 16px;
+      padding: 8px 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 4px;
+    }
+
+    .providers-header span {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--faint);
+      text-transform: uppercase;
+    }
+
+    /* ── Highlight box ── */
+    .callout {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-top: 16px;
+    }
+
+    .callout p {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .callout strong {
+      color: var(--text);
+    }
+
+    /* ── Divider ── */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      padding-top: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer p {
+      font-size: 13px;
+      color: var(--faint);
     }
 
     a {
-      color: #d946ef;
+      color: var(--accent2);
       text-decoration: none;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
+    a:hover { text-decoration: underline; }
 
-    .divider {
-      border: none;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      margin: 32px 0;
-    }
+    strong { color: var(--text); font-weight: 600; }
 
-    .updated {
-      font-size: 13px;
-      color: #555;
-      margin-top: 48px;
+    @media (max-width: 500px) {
+      .provider-row, .providers-header {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+      .providers-header { display: none; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="page">
 
-    <div class="header">
-      <img src="/chambita_logo.png" alt="Chambita logo" />
-      <div class="header-text">
-        <h1>Chambita</h1>
-        <p>Política de Privacidad</p>
+    <!-- Header -->
+    <div class="hero">
+      <div class="wordmark">
+        <div class="wordmark-icon">🔧</div>
+        <span class="wordmark-name">Chambita</span>
+      </div>
+      <h1>Política de Privacidad</h1>
+      <p>Explicamos de forma clara qué información recopilamos, cómo la usamos, con quién la compartimos y cuáles son tus derechos.</p>
+      <div class="meta-row">
+        <span class="badge">Versión 1.1</span>
+        <span class="badge">Mayo 2026</span>
+        <span class="badge">Ensenada, BC · México</span>
       </div>
     </div>
 
-    <p>En Chambita nos tomamos tu privacidad en serio. Esta política explica qué información recopilamos, cómo la usamos y cómo puedes controlarla.</p>
+    <!-- TOC -->
+    <nav class="toc">
+      <div class="toc-title">Contenido</div>
+      <ol>
+        <li><a href="#s1"><span class="toc-num">01</span>Información que recopilamos</a></li>
+        <li><a href="#s2"><span class="toc-num">02</span>Cómo usamos tu información</a></li>
+        <li><a href="#s3"><span class="toc-num">03</span>Inicio de sesión con Google, Facebook y Apple</a></li>
+        <li><a href="#s4"><span class="toc-num">04</span>Verificación de identidad</a></li>
+        <li><a href="#s5"><span class="toc-num">05</span>Pagos</a></li>
+        <li><a href="#s6"><span class="toc-num">06</span>Mensajes y chat</a></li>
+        <li><a href="#s7"><span class="toc-num">07</span>Notificaciones push</a></li>
+        <li><a href="#s8"><span class="toc-num">08</span>Ubicación</a></li>
+        <li><a href="#s9"><span class="toc-num">09</span>Terceros y proveedores</a></li>
+        <li><a href="#s10"><span class="toc-num">10</span>Seguridad</a></li>
+        <li><a href="#s11"><span class="toc-num">11</span>Eliminación de cuenta y datos</a></li>
+        <li><a href="#s12"><span class="toc-num">12</span>Menores de edad</a></li>
+        <li><a href="#s13"><span class="toc-num">13</span>Cambios a esta política</a></li>
+        <li><a href="#s14"><span class="toc-num">14</span>Contacto</a></li>
+      </ol>
+    </nav>
 
-    <hr class="divider" />
+    <!-- Sections -->
+    <div class="section" id="s1">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2>Información que recopilamos</h2>
+      </div>
+      <p>Cuando usas Chambita recopilamos la siguiente información, siempre con el propósito de brindarte el servicio:</p>
+      <ul class="data-list">
+        <li><strong>Datos de cuenta:</strong> nombre, apellido y correo electrónico al registrarte o iniciar sesión con Google, Facebook o Apple.</li>
+        <li><strong>Perfil:</strong> foto de perfil, número de teléfono, ciudad de preferencia y biografía — todos opcionales.</li>
+        <li><strong>Perfil de trabajador:</strong> oficio(s), tarifa, teléfonos de contacto y descripción profesional.</li>
+        <li><strong>Perfil de negocio:</strong> nombre del negocio, giro(s), dirección, código postal, coordenadas geográficas, teléfonos, sitio web y fotografías del local.</li>
+        <li><strong>Chambas:</strong> título, descripción, ciudad, oficio, imágenes y tarifa de las publicaciones que creas.</li>
+        <li><strong>Aplicaciones:</strong> registro de chambas a las que aplicas o que recibes.</li>
+        <li><strong>Reseñas:</strong> calificaciones y comentarios que escribes o recibes.</li>
+        <li><strong>Mensajes:</strong> contenido de las conversaciones dentro de la app.</li>
+        <li><strong>Verificación de identidad:</strong> fotografías de INE (frente y reverso), selfie y CURP — solo cuando solicitas verificarte voluntariamente.</li>
+        <li><strong>Datos de uso:</strong> eventos de navegación y comportamiento dentro de la app para mejorar la experiencia.</li>
+        <li><strong>Token de dispositivo:</strong> identificador para envío de notificaciones push.</li>
+      </ul>
+    </div>
 
-    <h2>1. Información que recopilamos</h2>
-    <p>Cuando usas Chambita podemos recopilar la siguiente información:</p>
-    <ul>
-      <li>Nombre y correo electrónico (al registrarte o iniciar sesión con Google o Facebook)</li>
-      <li>Número de teléfono (si decides agregarlo a tu perfil)</li>
-      <li>Foto de perfil (si decides subir una)</li>
-      <li>Información de las chambas que publicas o a las que aplicas</li>
-      <li>Calificaciones y reseñas que recibes o escribes</li>
-      <li>Ciudad de preferencia para búsqueda de servicios</li>
-    </ul>
+    <hr />
 
-    <h2>2. Cómo usamos tu información</h2>
-    <p>Usamos tu información para:</p>
-    <ul>
-      <li>Crear y gestionar tu cuenta</li>
-      <li>Conectar empleadores y trabajadores en la zona fronteriza</li>
-      <li>Enviarte notificaciones sobre tus chambas y aplicaciones</li>
-      <li>Mejorar la experiencia de la aplicación</li>
-    </ul>
+    <div class="section" id="s2">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2>Cómo usamos tu información</h2>
+      </div>
+      <ul class="data-list">
+        <li>Crear y gestionar tu cuenta.</li>
+        <li>Conectar empleadores con trabajadores y negocios en tu zona.</li>
+        <li>Mostrar tu perfil público cuando aplicas o publicas una chamba.</li>
+        <li>Procesar pagos de publicaciones a través de Stripe.</li>
+        <li>Enviarte notificaciones sobre chambas, aplicaciones y mensajes.</li>
+        <li>Verificar tu identidad cuando lo solicitas.</li>
+        <li>Moderar contenido para mantener la plataforma segura.</li>
+        <li>Detectar y prevenir fraudes o abusos.</li>
+        <li>Mejorar la app con base en métricas de uso agregadas.</li>
+        <li>Responder tus solicitudes de soporte.</li>
+      </ul>
+    </div>
 
-    <h2>3. Inicio de sesión con Facebook</h2>
-    <p>Si inicias sesión con Facebook, recopilamos tu nombre y correo electrónico (si está disponible en tu cuenta de Facebook). No accedemos a tu lista de amigos, publicaciones ni ninguna otra información de tu perfil de Facebook.</p>
+    <hr />
 
-    <h2>4. Inicio de sesión con Google</h2>
-    <p>Si inicias sesión con Google, recopilamos tu nombre y correo electrónico asociados a tu cuenta de Google. No accedemos a ningún otro dato de tu cuenta.</p>
+    <div class="section" id="s3">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2>Inicio de sesión con Google, Facebook y Apple</h2>
+      </div>
+      <p>Si usas un proveedor externo para iniciar sesión, recopilamos únicamente el nombre y correo electrónico que ese proveedor nos comparte. No accedemos a tus contactos, publicaciones, historial de búsqueda ni ningún otro dato de tu cuenta en esas plataformas.</p>
+      <p>Puedes revocar el acceso de Chambita desde la configuración de seguridad de Google, Facebook o Apple en cualquier momento.</p>
+    </div>
 
-    <h2>5. Compartir información</h2>
-    <p>No vendemos ni compartimos tu información personal con terceros, excepto cuando es necesario para operar el servicio (por ejemplo, servicios de almacenamiento en la nube) o cuando la ley lo requiere.</p>
+    <hr />
 
-    <h2>6. Seguridad</h2>
-    <p>Tomamos medidas razonables para proteger tu información, incluyendo el cifrado de contraseñas y conexiones seguras (HTTPS). Sin embargo, ningún sistema es completamente seguro.</p>
+    <div class="section" id="s4">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2>Verificación de identidad</h2>
+      </div>
+      <p>La verificación de identidad es <strong>completamente voluntaria</strong>. Si decides verificarte, nos envías fotografías de tu identificación oficial (INE), una selfie y opcionalmente tu CURP. Estos documentos son revisados manualmente por nuestro equipo y almacenados en servidores seguros (Microsoft Azure).</p>
+      <p>Los documentos de verificación se conservan únicamente el tiempo necesario para completar el proceso. Una vez verificada tu identidad, conservamos el resultado (verificado/rechazado) pero no los documentos originales de forma indefinida.</p>
+    </div>
 
-    <h2>7. Eliminación de datos</h2>
-    <p>Puedes solicitar la eliminación de tu cuenta y datos personales en cualquier momento enviando un correo a <a href="mailto:chambita.cerca.de.ti@gmail.com">chambita.cerca.de.ti@gmail.com</a> con el asunto <strong>"Borrar mis datos"</strong>. Procesaremos tu solicitud en un plazo de 30 días.</p>
+    <hr />
 
-    <h2>8. Menores de edad</h2>
-    <p>Chambita no está dirigida a menores de 18 años. Si eres menor de edad, por favor no uses la aplicación.</p>
+    <div class="section" id="s5">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <h2>Pagos</h2>
+      </div>
+      <p>Los pagos son procesados por <strong>Stripe</strong>, un proveedor certificado PCI-DSS. Chambita <strong>nunca almacena</strong> los datos de tu tarjeta de crédito o débito — toda la información de pago se transmite directamente a Stripe de forma cifrada.</p>
+      <p>Conservamos un registro del historial de pagos (monto, fecha, referencia) para efectos de facturación, soporte y cumplimiento legal.</p>
+    </div>
 
-    <h2>9. Cambios a esta política</h2>
-    <p>Podemos actualizar esta política ocasionalmente. Te notificaremos sobre cambios importantes a través de la aplicación. El uso continuado de Chambita después de los cambios implica tu aceptación.</p>
+    <hr />
 
-    <h2>10. Contacto</h2>
-    <p>Si tienes preguntas sobre esta política de privacidad, escríbenos a <a href="mailto:chambita.cerca.de.ti@gmail.com">chambita.cerca.de.ti@gmail.com</a>.</p>
+    <div class="section" id="s6">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <h2>Mensajes y chat</h2>
+      </div>
+      <p>Los mensajes entre usuarios se almacenan en <strong>Firebase Firestore</strong> (Google). El contenido de los mensajes es accesible para los participantes de la conversación y para el equipo de Chambita en caso de reportes de abuso o investigaciones de seguridad.</p>
+      <p>No vendemos ni compartimos el contenido de tus mensajes con terceros para fines publicitarios.</p>
+    </div>
 
-    <hr class="divider" />
+    <hr />
 
-    <p class="updated">Última actualización: abril 2026 · Ensenada, Baja California, México</p>
+    <div class="section" id="s7">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <h2>Notificaciones push</h2>
+      </div>
+      <p>Si otorgas permiso, almacenamos un token de dispositivo (FCM Token) para enviarte notificaciones sobre nuevas chambas de tu oficio, aplicaciones recibidas, mensajes y actualizaciones importantes. Puedes desactivar las notificaciones en cualquier momento desde los ajustes de tu dispositivo.</p>
+    </div>
+
+    <hr />
+
+    <div class="section" id="s8">
+      <div class="section-header">
+        <span class="section-num">08</span>
+        <h2>Ubicación</h2>
+      </div>
+      <p>La función "Cerca de mí" utiliza tu ubicación aproximada para mostrarte negocios y trabajadores cercanos. El acceso a tu ubicación es <strong>opcional</strong> — puedes usar Chambita sin habilitarlo seleccionando manualmente tu ciudad.</p>
+      <p>Tu ubicación en tiempo real no se almacena en nuestros servidores ni se comparte con otros usuarios.</p>
+    </div>
+
+    <hr />
+
+    <div class="section" id="s9">
+      <div class="section-header">
+        <span class="section-num">09</span>
+        <h2>Terceros y proveedores</h2>
+      </div>
+      <p>Para operar Chambita trabajamos con los siguientes proveedores de confianza. Cada uno tiene sus propias políticas de privacidad:</p>
+
+      <div class="providers">
+        <div class="providers-header">
+          <span>Proveedor</span>
+          <span>Uso</span>
+        </div>
+        <div class="provider-row">
+          <span class="provider-name">Google Firebase</span>
+          <span class="provider-role">Autenticación, base de datos de chat (Firestore), notificaciones push (FCM) y configuración remota</span>
+        </div>
+        <div class="provider-row">
+          <span class="provider-name">Stripe</span>
+          <span class="provider-role">Procesamiento de pagos con tarjeta</span>
+        </div>
+        <div class="provider-row">
+          <span class="provider-name">Microsoft Azure</span>
+          <span class="provider-role">Almacenamiento de imágenes de perfil, chambas y documentos de verificación</span>
+        </div>
+        <div class="provider-row">
+          <span class="provider-name">Railway</span>
+          <span class="provider-role">Infraestructura del servidor y base de datos principal (PostgreSQL)</span>
+        </div>
+        <div class="provider-row">
+          <span class="provider-name">Sentry</span>
+          <span class="provider-role">Monitoreo de errores técnicos — no contiene datos personales identificables</span>
+        </div>
+        <div class="provider-row">
+          <span class="provider-name">PostHog</span>
+          <span class="provider-role">Análisis de comportamiento dentro de la app — datos agregados y anonimizados</span>
+        </div>
+        <div class="provider-row">
+          <span class="provider-name">Google Maps / Places</span>
+          <span class="provider-role">Búsqueda y autocompletado de direcciones</span>
+        </div>
+        <div class="provider-row">
+          <span class="provider-name">Facebook</span>
+          <span class="provider-role">Inicio de sesión opcional con cuenta de Facebook</span>
+        </div>
+        <div class="provider-row">
+          <span class="provider-name">Apple</span>
+          <span class="provider-role">Inicio de sesión opcional con Apple ID</span>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top: 20px;">
+        <p><strong>No vendemos tu información.</strong> Nunca compartimos ni vendemos tus datos personales a terceros con fines publicitarios o comerciales.</p>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="section" id="s10">
+      <div class="section-header">
+        <span class="section-num">10</span>
+        <h2>Seguridad</h2>
+      </div>
+      <p>Implementamos medidas técnicas y organizativas para proteger tu información:</p>
+      <ul class="data-list">
+        <li>Todas las comunicaciones entre la app y nuestros servidores usan <strong>HTTPS/TLS</strong>.</li>
+        <li>Las contraseñas son gestionadas y cifradas por Firebase Authentication — nunca las almacenamos en texto plano.</li>
+        <li>El acceso a la base de datos está restringido y auditado.</li>
+        <li>Las imágenes y documentos se almacenan en Azure Blob Storage con acceso controlado.</li>
+        <li>Eliminación de cuenta requiere reautenticación con tu proveedor de identidad.</li>
+      </ul>
+      <p style="margin-top: 12px;">Aunque tomamos todas las precauciones razonables, ningún sistema es completamente infalible. En caso de una brecha de seguridad que afecte tus datos, te notificaremos conforme a la ley aplicable.</p>
+    </div>
+
+    <hr />
+
+    <div class="section" id="s11">
+      <div class="section-header">
+        <span class="section-num">11</span>
+        <h2>Eliminación de cuenta y datos</h2>
+      </div>
+      <p>Puedes eliminar tu cuenta en cualquier momento desde <strong>Ajustes → Eliminar cuenta</strong> dentro de la app. El proceso requiere que confirmes tu identidad con tu contraseña, cuenta de Google, Facebook o Apple.</p>
+      <p>Al solicitar la eliminación:</p>
+      <ul class="data-list">
+        <li>Tu perfil, publicaciones y datos personales identificables se marcan para eliminación de forma inmediata y dejan de ser visibles para otros usuarios.</li>
+        <li>La eliminación permanente e irreversible de tus datos se completa en un plazo máximo de <strong>30 días</strong>.</li>
+        <li>Los registros de pagos pueden conservarse por el tiempo que exige la legislación fiscal mexicana (5 años).</li>
+        <li>Las reseñas que otros usuarios te dejaron pueden conservarse de forma anonimizada para mantener la integridad del historial de la plataforma.</li>
+      </ul>
+      <div class="callout">
+        <p>También puedes solicitar la eliminación de tus datos enviando un correo a <a href="mailto:dev@chambita.app">dev@chambita.app</a> con el asunto <strong>"Borrar mis datos"</strong>. Procesamos tu solicitud en un plazo máximo de 30 días.</p>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="section" id="s12">
+      <div class="section-header">
+        <span class="section-num">12</span>
+        <h2>Menores de edad</h2>
+      </div>
+      <p>Chambita está dirigida exclusivamente a personas mayores de 18 años. No recopilamos intencionalmente información de menores de edad. Si detectamos que un usuario es menor de edad, eliminaremos su cuenta. Si eres padre o tutor y crees que tu hijo tiene una cuenta, contáctanos a <a href="mailto:dev@chambita.app">dev@chambita.app</a>.</p>
+    </div>
+
+    <hr />
+
+    <div class="section" id="s13">
+      <div class="section-header">
+        <span class="section-num">13</span>
+        <h2>Cambios a esta política</h2>
+      </div>
+      <p>Podemos actualizar esta política cuando sea necesario. Cuando los cambios sean significativos, te notificaremos mediante un aviso dentro de la app con al menos 7 días de anticipación. La fecha de la última actualización siempre estará visible al pie de esta página.</p>
+      <p>El uso continuado de Chambita después de la entrada en vigor de los cambios implica tu aceptación de la política actualizada.</p>
+    </div>
+
+    <hr />
+
+    <div class="section" id="s14">
+      <div class="section-header">
+        <span class="section-num">14</span>
+        <h2>Contacto</h2>
+      </div>
+      <p>Si tienes preguntas, solicitudes o inquietudes sobre esta política o el manejo de tus datos, escríbenos:</p>
+      <div class="callout">
+        <p>📧 <a href="mailto:dev@chambita.app">dev@chambita.app</a><br />
+        Chambita · Ensenada, Baja California, México</p>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="footer">
+      <p>© 2026 Chambita. Todos los derechos reservados.</p>
+      <p>Última actualización: mayo 2026</p>
+    </div>
 
   </div>
 </body>
