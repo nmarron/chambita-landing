@@ -4,40 +4,42 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chambita</title>
+  <link rel="stylesheet" href="/chambita.css" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #ffffff;
-      color: #111;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .auth-wrap {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 40px 24px;
-      -webkit-font-smoothing: antialiased;
     }
 
-    .logo {
-      width: 80px;
-      height: 80px;
-      border-radius: 12px;
+    .auth-logo {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
       margin-bottom: 24px;
     }
 
-    .title {
+    .auth-title {
       font-size: 22px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: -0.4px;
       margin-bottom: 10px;
       text-align: center;
+      color: var(--text);
     }
 
-    .body {
+    .auth-body {
       font-size: 15px;
-      color: #666;
+      color: var(--muted);
       line-height: 1.6;
       text-align: center;
       max-width: 320px;
@@ -47,8 +49,8 @@
     .spinner {
       width: 28px;
       height: 28px;
-      border: 2.5px solid #e5e5e5;
-      border-top-color: #111;
+      border: 2.5px solid var(--border);
+      border-top-color: var(--accent);
       border-radius: 50%;
       animation: spin 0.75s linear infinite;
       margin-bottom: 20px;
@@ -56,8 +58,7 @@
 
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Form */
-    .form {
+    .auth-form {
       width: 100%;
       max-width: 320px;
       display: flex;
@@ -65,50 +66,47 @@
       gap: 12px;
     }
 
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+    .auth-field { display: flex; flex-direction: column; gap: 6px; }
 
-    .field label {
+    .auth-field label {
       font-size: 13px;
       font-weight: 600;
-      color: #111;
+      color: var(--text);
     }
 
-    .field input {
+    .auth-field input {
       width: 100%;
       height: 44px;
       padding: 0 14px;
       border-radius: 10px;
-      border: 1px solid #ddd;
-      background: #fafafa;
-      color: #111;
-      font-family: inherit;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-family: var(--sans);
       font-size: 15px;
       outline: none;
+      transition: border-color 0.15s;
     }
 
-    .field input:focus {
-      border-color: #111;
+    .auth-field input:focus {
+      border-color: var(--accent);
       background: #fff;
     }
 
-    .inline-error {
+    .auth-error {
       font-size: 13px;
-      color: #e53e3e;
+      color: var(--danger);
       min-height: 16px;
     }
 
-    .btn {
+    .auth-btn {
       width: 100%;
       height: 46px;
       border-radius: 10px;
       border: none;
-      background: #5d02ef;
+      background: var(--accent);
       color: #fff;
-      font-family: inherit;
+      font-family: var(--sans);
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
@@ -116,16 +114,31 @@
       transition: opacity 0.15s;
     }
 
-    .btn:hover   { opacity: 0.85; }
-    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .auth-btn:hover    { opacity: 0.88; }
+    .auth-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .auth-footer {
+      border-top: 1px solid var(--border);
+      padding: 20px 24px;
+      text-align: center;
+    }
+
+    .auth-footer a { font-size: 13px; color: var(--faint); }
+    .auth-footer a:hover { color: var(--accent); text-decoration: none; }
   </style>
 </head>
 <body>
 
-  <img src="/chambita_logo.png" alt="Chambita" class="logo" id="logo" />
-  <div id="content">
-    <div class="spinner"></div>
-    <p class="body">Un momento...</p>
+  <div class="auth-wrap">
+    <img src="/chambita_logo_dark.png" alt="Chambita" class="auth-logo" />
+    <div id="content">
+      <div class="spinner"></div>
+      <p class="auth-body">Un momento...</p>
+    </div>
+  </div>
+
+  <div class="auth-footer">
+    <a href="/">chambita.app</a>
   </div>
 
   <script type="module">
@@ -151,8 +164,8 @@
 
     function renderState(title, body) {
       el.innerHTML = `
-        <div class="title">${title}</div>
-        <p class="body">${body}</p>
+        <div class="auth-title">${title}</div>
+        <p class="auth-body">${body}</p>
       `;
     }
 
@@ -165,31 +178,31 @@
 
     } else if (mode === 'verifyEmail') {
       applyActionCode(auth, oobCode)
-        .then(() => renderState('Email verificado', 'Tu correo ha sido verificado. Ya puedes usar Chambita.'))
+        .then(() => renderState('Email verificado ✓', 'Tu correo ha sido verificado. Ya puedes usar Chambita.'))
         .catch(() => renderError('El enlace no es válido o ya expiró. Solicita uno nuevo desde la app.'));
 
     } else if (mode === 'verifyAndChangeEmail') {
       applyActionCode(auth, oobCode)
-        .then(() => renderState('Email actualizado', 'Tu correo ha sido cambiado. Ya puedes iniciar sesión con el nuevo correo.'))
+        .then(() => renderState('Email actualizado ✓', 'Tu correo ha sido cambiado. Ya puedes iniciar sesión con el nuevo correo.'))
         .catch(() => renderError('El enlace no es válido o ya expiró. Solicita el cambio de correo nuevamente desde la app.'));
 
     } else if (mode === 'resetPassword') {
       verifyPasswordResetCode(auth, oobCode)
         .then(() => {
           el.innerHTML = `
-            <div class="title">Nueva contraseña</div>
-            <p class="body" style="margin-bottom: 20px;">Ingresa tu nueva contraseña para Chambita.</p>
-            <div class="form">
-              <div class="field">
+            <div class="auth-title">Nueva contraseña</div>
+            <p class="auth-body" style="margin-bottom: 20px;">Ingresa tu nueva contraseña para Chambita.</p>
+            <div class="auth-form">
+              <div class="auth-field">
                 <label for="pwd">Nueva contraseña</label>
-                <input type="password" id="pwd" placeholder="Mínimo 6 caracteres" minlength="6" />
+                <input type="password" id="pwd" placeholder="Mínimo 8 caracteres" minlength="8" />
               </div>
-              <div class="field">
+              <div class="auth-field">
                 <label for="pwd2">Confirmar contraseña</label>
-                <input type="password" id="pwd2" placeholder="Repite la contraseña" minlength="6" />
+                <input type="password" id="pwd2" placeholder="Repite la contraseña" minlength="8" />
               </div>
-              <p class="inline-error" id="err"></p>
-              <button class="btn" id="btn" onclick="handleReset()">Cambiar contraseña</button>
+              <p class="auth-error" id="err"></p>
+              <button class="auth-btn" id="btn" onclick="handleReset()">Cambiar contraseña</button>
             </div>
           `;
         })
@@ -207,14 +220,14 @@
 
       err.textContent = '';
 
-      if (pwd.length < 6) { err.textContent = 'Mínimo 6 caracteres.'; return; }
+      if (pwd.length < 8) { err.textContent = 'Mínimo 8 caracteres.'; return; }
       if (pwd !== pwd2)   { err.textContent = 'Las contraseñas no coinciden.'; return; }
 
       btn.disabled    = true;
       btn.textContent = 'Cambiando...';
 
       confirmPasswordReset(auth, oobCode, pwd)
-        .then(() => renderState('Contraseña actualizada', 'Tu contraseña ha sido cambiada. Ya puedes iniciar sesión en Chambita.'))
+        .then(() => renderState('Contraseña actualizada ✓', 'Tu contraseña ha sido cambiada. Ya puedes iniciar sesión en Chambita.'))
         .catch(() => {
           err.textContent = 'Error al cambiar la contraseña. El enlace puede haber expirado.';
           btn.disabled    = false;

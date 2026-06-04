@@ -1,309 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Términos de Servicio — Chambita</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --purple:     #4f20d6;
-      --purple-light: #ede9fb;
-      --text:       #1a1a2e;
-      --muted:      #6b7280;
-      --border:     #e5e7eb;
-      --bg:         #ffffff;
-      --section-num: #4f20d6;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      font-size: 16px;
-    }
-
-    /* ── Header ── */
-    .site-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 20px 24px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .site-header img {
-      height: 36px;
-      width: auto;
-    }
-
-    .site-header span {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.3px;
-    }
-
-    /* ── Nav links ── */
-    .site-nav {
-      display: flex;
-      gap: 24px;
-      padding: 0 24px 16px;
-      border-bottom: 1px solid var(--border);
-      flex-wrap: wrap;
-    }
-
-    .site-nav a {
-      font-size: 14px;
-      color: var(--muted);
-      text-decoration: none;
-    }
-
-    .site-nav a:hover { color: var(--purple); }
-
-    /* ── Layout ── */
-    .wrapper {
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 48px 24px 80px;
-    }
-
-    /* ── Page title ── */
-    .page-title {
-      font-size: 32px;
-      font-weight: 800;
-      color: var(--text);
-      letter-spacing: -0.5px;
-      margin-bottom: 8px;
-    }
-
-    .page-subtitle {
-      font-size: 14px;
-      color: var(--muted);
-      margin-bottom: 40px;
-    }
-
-    /* ── TOC ── */
-    .toc {
-      background: var(--purple-light);
-      border-radius: 12px;
-      padding: 24px 28px;
-      margin-bottom: 48px;
-    }
-
-    .toc-title {
-      font-size: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
-
-    .toc ol {
-      list-style: none;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px 24px;
-    }
-
-    @media (max-width: 520px) {
-      .toc ol { grid-template-columns: 1fr; }
-    }
-
-    .toc ol li a {
-      font-size: 14px;
-      color: var(--text);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .toc ol li a:hover { color: var(--purple); }
-
-    .toc-num {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--purple);
-      background: white;
-      border-radius: 4px;
-      padding: 1px 5px;
-      flex-shrink: 0;
-    }
-
-    /* ── Sections ── */
-    .section {
-      margin-bottom: 48px;
-      padding-top: 8px;
-    }
-
-    .section-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--section-num);
-      margin-bottom: 6px;
-    }
-
-    .section h2 {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.3px;
-      margin-bottom: 16px;
-    }
-
-    .section p {
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-
-    .section ul, .section ol {
-      padding-left: 20px;
-      margin-bottom: 12px;
-    }
-
-    .section li {
-      margin-bottom: 6px;
-      color: var(--text);
-    }
-
-    .section strong { color: var(--text); }
-
-    hr {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 0 0 48px;
-    }
-
-    /* ── Table ── */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-      margin-bottom: 16px;
-    }
-
-    th {
-      text-align: left;
-      padding: 10px 12px;
-      background: var(--purple-light);
-      font-weight: 600;
-      font-size: 13px;
-      color: var(--text);
-    }
-
-    td {
-      padding: 10px 12px;
-      border-bottom: 1px solid var(--border);
-      vertical-align: top;
-    }
-
-    /* ── Footer ── */
-    .site-footer {
-      text-align: center;
-      padding: 32px 24px;
-      border-top: 1px solid var(--border);
-      font-size: 13px;
-      color: var(--muted);
-    }
-  </style>
+  <link rel="stylesheet" href="/chambita.css" />
 </head>
 <body>
 
   <header class="site-header">
-    <img src="https://chambita.app/chambita_logo_dark.png" alt="Chambita" />
-    <span>Chambita</span>
+    <a href="/" class="site-header-logo">
+      <img src="/chambita_logo_dark.png" alt="Chambita" />
+      <span>Chambita</span>
+    </a>
+    <nav class="site-header-nav">
+      <a href="/privacy">Privacidad</a>
+      <a href="/terms" class="active">Términos</a>
+      <a href="/data-deletion">Eliminación de datos</a>
+    </nav>
   </header>
 
-  <nav class="site-nav">
-    <a href="/privacy">Política de Privacidad</a>
-    <a href="/terms">Términos de Servicio</a>
-    <a href="/data-deletion">Eliminación de Datos</a>
-  </nav>
-
-  <div class="wrapper">
-
-    <h1 class="page-title">Términos de Servicio</h1>
-    <p class="page-subtitle">Última actualización: junio 2026</p>
-
-    <div class="toc">
-      <p class="toc-title">Contenido</p>
-      <ol>
-        <li><a href="#s1"><span class="toc-num">01</span> Aceptación de los términos</a></li>
-        <li><a href="#s2"><span class="toc-num">02</span> Descripción del servicio</a></li>
-        <li><a href="#s3"><span class="toc-num">03</span> Elegibilidad</a></li>
-        <li><a href="#s4"><span class="toc-num">04</span> Registro y cuenta</a></li>
-        <li><a href="#s5"><span class="toc-num">05</span> Conducta del usuario</a></li>
-        <li><a href="#s6"><span class="toc-num">06</span> Publicaciones y contenido</a></li>
-        <li><a href="#s7"><span class="toc-num">07</span> Pagos</a></li>
-        <li><a href="#s8"><span class="toc-num">08</span> Relación entre usuarios</a></li>
-        <li><a href="#s9"><span class="toc-num">09</span> Propiedad intelectual</a></li>
-        <li><a href="#s10"><span class="toc-num">10</span> Limitación de responsabilidad</a></li>
-        <li><a href="#s11"><span class="toc-num">11</span> Suspensión y terminación</a></li>
-        <li><a href="#s12"><span class="toc-num">12</span> Cambios a estos términos</a></li>
-        <li><a href="#s13"><span class="toc-num">13</span> Ley aplicable</a></li>
-        <li><a href="#s14"><span class="toc-num">14</span> Contacto</a></li>
-      </ol>
+  <div class="page">
+    <div class="doc-header">
+      <p class="doc-header-eyebrow">Legal</p>
+      <h1>Términos de Servicio</h1>
+      <p class="doc-header-meta">Última actualización: junio 2026</p>
     </div>
 
-    <!-- 01 -->
+    <nav class="toc">
+      <div class="toc-title">Contenido</div>
+      <ol>
+        <li><a href="#s1"><span class="toc-num">01</span>Aceptación de los términos</a></li>
+        <li><a href="#s2"><span class="toc-num">02</span>Descripción del servicio</a></li>
+        <li><a href="#s3"><span class="toc-num">03</span>Elegibilidad</a></li>
+        <li><a href="#s4"><span class="toc-num">04</span>Registro y cuenta</a></li>
+        <li><a href="#s5"><span class="toc-num">05</span>Conducta del usuario</a></li>
+        <li><a href="#s6"><span class="toc-num">06</span>Publicaciones y contenido</a></li>
+        <li><a href="#s7"><span class="toc-num">07</span>Pagos</a></li>
+        <li><a href="#s8"><span class="toc-num">08</span>Relación entre usuarios</a></li>
+        <li><a href="#s9"><span class="toc-num">09</span>Propiedad intelectual</a></li>
+        <li><a href="#s10"><span class="toc-num">10</span>Limitación de responsabilidad</a></li>
+        <li><a href="#s11"><span class="toc-num">11</span>Suspensión y terminación</a></li>
+        <li><a href="#s12"><span class="toc-num">12</span>Cambios a estos términos</a></li>
+        <li><a href="#s13"><span class="toc-num">13</span>Ley aplicable</a></li>
+        <li><a href="#s14"><span class="toc-num">14</span>Contacto</a></li>
+      </ol>
+    </nav>
+
     <div class="section" id="s1">
-      <p class="section-label">01</p>
-      <h2>Aceptación de los términos</h2>
+      <div class="section-header"><span class="section-num">01</span><h2>Aceptación de los términos</h2></div>
       <p>Al descargar, instalar o usar la aplicación Chambita, aceptas quedar vinculado por estos Términos de Servicio. Si no estás de acuerdo con alguno de ellos, no debes usar la app.</p>
       <p>El uso continuado de Chambita después de cualquier modificación a estos términos constituye tu aceptación de las condiciones actualizadas.</p>
     </div>
     <hr />
 
-    <!-- 02 -->
     <div class="section" id="s2">
-      <p class="section-label">02</p>
-      <h2>Descripción del servicio</h2>
+      <div class="section-header"><span class="section-num">02</span><h2>Descripción del servicio</h2></div>
       <p>Chambita es una plataforma que conecta a personas que necesitan servicios o mano de obra (<strong>empleadores</strong>) con trabajadores independientes y negocios (<strong>prestadores de servicios</strong>) en México.</p>
       <p>Chambita actúa exclusivamente como intermediario tecnológico. No somos empleador de ningún trabajador, ni agencia de colocación, ni parte contratante en los acuerdos que se celebren entre usuarios.</p>
     </div>
     <hr />
 
-    <!-- 03 -->
     <div class="section" id="s3">
-      <p class="section-label">03</p>
-      <h2>Elegibilidad</h2>
+      <div class="section-header"><span class="section-num">03</span><h2>Elegibilidad</h2></div>
       <p>Para usar Chambita debes:</p>
-      <ul>
+      <ul class="data-list">
         <li>Tener al menos <strong>18 años de edad</strong>.</li>
         <li>Tener capacidad legal para celebrar contratos conforme a la legislación mexicana.</li>
         <li>No tener una cuenta suspendida o eliminada por violaciones previas a estos términos.</li>
       </ul>
-      <p>Al registrarte, declaras y garantizas que cumples con estos requisitos.</p>
+      <p style="margin-top: 12px;">Al registrarte, declaras y garantizas que cumples con estos requisitos.</p>
     </div>
     <hr />
 
-    <!-- 04 -->
     <div class="section" id="s4">
-      <p class="section-label">04</p>
-      <h2>Registro y cuenta</h2>
+      <div class="section-header"><span class="section-num">04</span><h2>Registro y cuenta</h2></div>
       <p>Para acceder a las funciones principales debes crear una cuenta. Eres responsable de:</p>
-      <ul>
+      <ul class="data-list">
         <li>Proporcionar información veraz, completa y actualizada.</li>
         <li>Mantener la confidencialidad de tus credenciales de acceso.</li>
         <li>Todas las actividades que ocurran bajo tu cuenta.</li>
       </ul>
-      <p>Si detectas acceso no autorizado a tu cuenta, notifícanos de inmediato a <a href="mailto:dev@chambita.app">dev@chambita.app</a>.</p>
-      <p>No puedes crear más de una cuenta por persona. Las cuentas son personales e intransferibles.</p>
+      <div class="callout" style="margin-top: 12px;">
+        <p>Si detectas acceso no autorizado a tu cuenta, notifícanos de inmediato a <a href="mailto:dev@chambita.app">dev@chambita.app</a>.</p>
+      </div>
+      <p style="margin-top: 12px;">No puedes crear más de una cuenta por persona. Las cuentas son personales e intransferibles.</p>
     </div>
     <hr />
 
-    <!-- 05 -->
     <div class="section" id="s5">
-      <p class="section-label">05</p>
-      <h2>Conducta del usuario</h2>
+      <div class="section-header"><span class="section-num">05</span><h2>Conducta del usuario</h2></div>
       <p>Al usar Chambita te comprometes a no:</p>
-      <ul>
+      <ul class="data-list">
         <li>Publicar contenido falso, engañoso, ofensivo, ilegal o que infrinja derechos de terceros.</li>
         <li>Acosar, amenazar o discriminar a otros usuarios.</li>
         <li>Usar la plataforma para actividades ilegales, incluyendo fraude, lavado de dinero o tráfico de personas.</li>
@@ -312,119 +100,105 @@
         <li>Crear cuentas falsas o suplantar la identidad de otra persona o empresa.</li>
         <li>Enviar spam, publicidad no solicitada o contenido automatizado masivo.</li>
       </ul>
-      <p>Chambita puede moderar y eliminar contenido que viole estas reglas, y suspender o eliminar cuentas sin previo aviso.</p>
+      <p style="margin-top: 12px;">Chambita puede moderar y eliminar contenido que viole estas reglas, y suspender o eliminar cuentas sin previo aviso.</p>
     </div>
     <hr />
 
-    <!-- 06 -->
     <div class="section" id="s6">
-      <p class="section-label">06</p>
-      <h2>Publicaciones y contenido</h2>
+      <div class="section-header"><span class="section-num">06</span><h2>Publicaciones y contenido</h2></div>
       <p>Al publicar una chamba, perfil, reseña, imagen u otro contenido en Chambita, declaras que:</p>
-      <ul>
+      <ul class="data-list">
         <li>El contenido es tuyo o tienes los derechos para publicarlo.</li>
         <li>No viola derechos de propiedad intelectual, privacidad ni ninguna ley aplicable.</li>
         <li>Es veraz y no engañoso.</li>
       </ul>
-      <p>Otorgas a Chambita una licencia no exclusiva, mundial y libre de regalías para mostrar, reproducir y distribuir tu contenido dentro de la plataforma con el fin de prestar el servicio.</p>
+      <p style="margin-top: 12px;">Otorgas a Chambita una licencia no exclusiva, mundial y libre de regalías para mostrar, reproducir y distribuir tu contenido dentro de la plataforma con el fin de prestar el servicio.</p>
       <p>Chambita se reserva el derecho de eliminar cualquier contenido que considere inapropiado, sin necesidad de justificación.</p>
     </div>
     <hr />
 
-    <!-- 07 -->
     <div class="section" id="s7">
-      <p class="section-label">07</p>
-      <h2>Pagos</h2>
+      <div class="section-header"><span class="section-num">07</span><h2>Pagos</h2></div>
       <p>Algunas funciones de Chambita tienen costo, como la publicación de chambas o el perfil destacado. Al realizar un pago aceptas:</p>
-      <ul>
+      <ul class="data-list">
         <li>Los pagos son procesados por <strong>Stripe</strong>, proveedor certificado PCI-DSS. Chambita no almacena datos de tarjeta.</li>
         <li>Los precios se expresan en pesos mexicanos (MXN) e incluyen IVA cuando aplique.</li>
         <li>Los pagos por publicaciones son <strong>no reembolsables</strong> una vez que la chamba ha sido publicada, salvo error técnico comprobable de nuestra parte.</li>
         <li>Las suscripciones o servicios por tiempo determinado (como perfil destacado) no se prorrogan automáticamente.</li>
       </ul>
-      <p>Para disputas de pago escríbenos a <a href="mailto:dev@chambita.app">dev@chambita.app</a> dentro de los 7 días siguientes al cargo.</p>
+      <div class="callout">
+        <p>Para disputas de pago escríbenos a <a href="mailto:dev@chambita.app">dev@chambita.app</a> dentro de los 7 días siguientes al cargo.</p>
+      </div>
     </div>
     <hr />
 
-    <!-- 08 -->
     <div class="section" id="s8">
-      <p class="section-label">08</p>
-      <h2>Relación entre usuarios</h2>
+      <div class="section-header"><span class="section-num">08</span><h2>Relación entre usuarios</h2></div>
       <p>Chambita es un marketplace. Los acuerdos, contratos, pagos y disputas entre empleadores y prestadores de servicios son <strong>responsabilidad exclusiva de las partes involucradas</strong>.</p>
       <p>Chambita no garantiza la calidad, puntualidad, legalidad ni el resultado de ningún servicio contratado a través de la plataforma. Tampoco garantiza que los perfiles verificados estén exentos de errores o conductas indebidas.</p>
       <p>Te recomendamos tomar precauciones razonables al contratar servicios: verificar referencias, acordar términos por escrito y no realizar pagos adelantados a personas desconocidas.</p>
     </div>
     <hr />
 
-    <!-- 09 -->
     <div class="section" id="s9">
-      <p class="section-label">09</p>
-      <h2>Propiedad intelectual</h2>
+      <div class="section-header"><span class="section-num">09</span><h2>Propiedad intelectual</h2></div>
       <p>Todos los elementos de Chambita — incluyendo el nombre, logotipo, diseño, código fuente, textos e imágenes propias — son propiedad de Chambita o sus licenciantes y están protegidos por las leyes de propiedad intelectual aplicables.</p>
       <p>No puedes copiar, modificar, distribuir, vender ni crear obras derivadas de ningún elemento de la plataforma sin autorización escrita previa.</p>
     </div>
     <hr />
 
-    <!-- 10 -->
     <div class="section" id="s10">
-      <p class="section-label">10</p>
-      <h2>Limitación de responsabilidad</h2>
+      <div class="section-header"><span class="section-num">10</span><h2>Limitación de responsabilidad</h2></div>
       <p>En la máxima medida permitida por la ley, Chambita no será responsable por:</p>
-      <ul>
+      <ul class="data-list">
         <li>Daños directos, indirectos, incidentales o consecuentes derivados del uso o la imposibilidad de usar la app.</li>
         <li>Pérdida de datos, ingresos o ganancias.</li>
         <li>Conductas de otros usuarios dentro o fuera de la plataforma.</li>
         <li>Interrupciones del servicio por causas de fuerza mayor, fallas de terceros proveedores o mantenimiento.</li>
       </ul>
-      <p>La responsabilidad máxima de Chambita frente a cualquier usuario, en cualquier circunstancia, no excederá el monto pagado por dicho usuario en los 12 meses anteriores al evento que originó el reclamo.</p>
+      <p style="margin-top: 12px;">La responsabilidad máxima de Chambita frente a cualquier usuario, en cualquier circunstancia, no excederá el monto pagado por dicho usuario en los 12 meses anteriores al evento que originó el reclamo.</p>
     </div>
     <hr />
 
-    <!-- 11 -->
     <div class="section" id="s11">
-      <p class="section-label">11</p>
-      <h2>Suspensión y terminación</h2>
+      <div class="section-header"><span class="section-num">11</span><h2>Suspensión y terminación</h2></div>
       <p>Chambita puede suspender o eliminar tu cuenta en cualquier momento si:</p>
-      <ul>
+      <ul class="data-list">
         <li>Violas estos Términos de Servicio.</li>
         <li>Tu conducta pone en riesgo la seguridad de otros usuarios o de la plataforma.</li>
         <li>Así lo requiere una autoridad competente.</li>
       </ul>
-      <p>Tú puedes eliminar tu cuenta en cualquier momento desde <strong>Ajustes → Eliminar cuenta</strong>. La eliminación de cuenta no genera derecho a reembolso de pagos realizados.</p>
+      <p style="margin-top: 12px;">Tú puedes eliminar tu cuenta en cualquier momento desde <strong>Ajustes → Eliminar cuenta</strong>. La eliminación de cuenta no genera derecho a reembolso de pagos realizados.</p>
     </div>
     <hr />
 
-    <!-- 12 -->
     <div class="section" id="s12">
-      <p class="section-label">12</p>
-      <h2>Cambios a estos términos</h2>
+      <div class="section-header"><span class="section-num">12</span><h2>Cambios a estos términos</h2></div>
       <p>Podemos modificar estos Términos de Servicio cuando sea necesario. Cuando los cambios sean significativos, te notificaremos mediante un aviso dentro de la app con al menos <strong>7 días de anticipación</strong>.</p>
       <p>El uso continuado de Chambita después de la entrada en vigor de los cambios implica tu aceptación de los términos actualizados.</p>
     </div>
     <hr />
 
-    <!-- 13 -->
     <div class="section" id="s13">
-      <p class="section-label">13</p>
-      <h2>Ley aplicable</h2>
+      <div class="section-header"><span class="section-num">13</span><h2>Ley aplicable</h2></div>
       <p>Estos Términos de Servicio se rigen por las leyes de los Estados Unidos Mexicanos. Cualquier controversia derivada de su interpretación o cumplimiento se someterá a la jurisdicción de los tribunales competentes de Ensenada, Baja California, México, renunciando expresamente a cualquier otro fuero que pudiera corresponder.</p>
     </div>
     <hr />
 
-    <!-- 14 -->
     <div class="section" id="s14">
-      <p class="section-label">14</p>
-      <h2>Contacto</h2>
+      <div class="section-header"><span class="section-num">14</span><h2>Contacto</h2></div>
       <p>Si tienes preguntas o inquietudes sobre estos Términos de Servicio, escríbenos:</p>
-      <p>📧 <a href="mailto:dev@chambita.app">dev@chambita.app</a><br />
-      Chambita · Ensenada, Baja California, México</p>
+      <div class="callout">
+        <p>📧 <a href="mailto:dev@chambita.app">dev@chambita.app</a><br />Chambita · Ensenada, Baja California, México</p>
+      </div>
     </div>
 
+    <hr style="margin-bottom: 0;" />
   </div>
 
   <footer class="site-footer">
     <p>© 2026 Chambita. Todos los derechos reservados.</p>
-    <p style="margin-top: 4px;">Última actualización: junio 2026</p>
+    <p>Última actualización: junio 2026</p>
   </footer>
 
 </body>
