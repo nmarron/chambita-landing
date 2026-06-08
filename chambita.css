@@ -21,6 +21,7 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--sans);
+  font-size: 17px;
   background: var(--bg);
   color: var(--text);
   line-height: 1.75;
@@ -104,7 +105,7 @@ body {
 }
 
 .doc-header h1 {
-  font-size: 36px;
+  font-size: 38px;
   font-weight: 800;
   letter-spacing: -1px;
   color: var(--text);
@@ -142,7 +143,7 @@ body {
   align-items: center;
   gap: 12px;
   padding: 7px 0;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--muted);
   text-decoration: none;
   transition: color 0.15s;
@@ -179,14 +180,14 @@ body {
 }
 
 .section h2 {
-  font-size: 20px;
+  font-size: 21px;
   font-weight: 700;
   letter-spacing: -0.3px;
   color: var(--text);
 }
 
 .section p {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--muted);
   margin-bottom: 12px;
 }
@@ -206,7 +207,7 @@ body {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--muted);
 }
 
@@ -262,8 +263,8 @@ body {
 }
 
 .provider-row:hover { background: var(--surface); }
-.provider-name { font-size: 14px; font-weight: 500; color: var(--text); }
-.provider-role { font-size: 14px; color: var(--muted); }
+.provider-name { font-size: 15px; font-weight: 500; color: var(--text); }
+.provider-role { font-size: 15px; color: var(--muted); }
 
 /* ── Retention table ── */
 .retention { display: flex; flex-direction: column; gap: 2px; margin-top: 16px; }
@@ -297,7 +298,7 @@ body {
 }
 
 .retention-row:hover { background: var(--surface); }
-.retention-item { font-size: 14px; color: var(--muted); }
+.retention-item { font-size: 15px; color: var(--muted); }
 
 .retention-tag {
   font-family: var(--mono);
@@ -327,7 +328,7 @@ body {
   padding: 10px 14px;
   background: var(--surface);
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--muted);
 }
 
@@ -366,8 +367,8 @@ body {
 }
 
 .step-content { display: flex; flex-direction: column; gap: 3px; }
-.step-label { font-size: 15px; color: var(--text); font-weight: 500; }
-.step-hint  { font-size: 13px; color: var(--muted); }
+.step-label { font-size: 16px; color: var(--text); font-weight: 500; }
+.step-hint  { font-size: 14px; color: var(--muted); }
 
 /* ── Option cards ── */
 .options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
@@ -385,7 +386,7 @@ body {
 .option-card.primary { border-color: rgba(92,24,200,0.3); }
 .option-icon  { font-size: 24px; }
 .option-title { font-size: 16px; font-weight: 600; color: var(--text); }
-.option-desc  { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.option-desc  { font-size: 15px; color: var(--muted); line-height: 1.6; }
 
 .option-tag {
   font-family: var(--mono);
