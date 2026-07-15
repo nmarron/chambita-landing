@@ -93,6 +93,31 @@
       background: #fff;
     }
 
+    .auth-field-input-wrap { position: relative; }
+    .auth-field-input-wrap input { padding-right: 44px; }
+
+    .toggle-pwd {
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .toggle-pwd svg { width: 20px; height: 20px; }
+    .toggle-pwd .icon-off { display: none; }
+    .toggle-pwd.is-visible .icon-on { display: none; }
+    .toggle-pwd.is-visible .icon-off { display: block; }
+
     .auth-error {
       font-size: 13px;
       color: var(--danger);
@@ -195,11 +220,23 @@
             <div class="auth-form">
               <div class="auth-field">
                 <label for="pwd">Nueva contraseña</label>
-                <input type="password" id="pwd" placeholder="Mínimo 8 caracteres" minlength="8" />
+                <div class="auth-field-input-wrap">
+                  <input type="password" id="pwd" placeholder="Mínimo 8 caracteres" minlength="8" />
+                  <button type="button" class="toggle-pwd" onclick="togglePwd('pwd')" aria-label="Mostrar contraseña" tabindex="-1">
+                    <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"/><path d="M10.6 5.1A10.9 10.9 0 0 1 12 5c7 0 10.5 7 10.5 7a13.2 13.2 0 0 1-3.1 3.9M6.3 6.3C3.5 8.1 1.5 12 1.5 12s3.5 7 10.5 7a10.4 10.4 0 0 0 4.6-1"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+                  </button>
+                </div>
               </div>
               <div class="auth-field">
                 <label for="pwd2">Confirmar contraseña</label>
-                <input type="password" id="pwd2" placeholder="Repite la contraseña" minlength="8" />
+                <div class="auth-field-input-wrap">
+                  <input type="password" id="pwd2" placeholder="Repite la contraseña" minlength="8" />
+                  <button type="button" class="toggle-pwd" onclick="togglePwd('pwd2')" aria-label="Mostrar contraseña" tabindex="-1">
+                    <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"/><path d="M10.6 5.1A10.9 10.9 0 0 1 12 5c7 0 10.5 7 10.5 7a13.2 13.2 0 0 1-3.1 3.9M6.3 6.3C3.5 8.1 1.5 12 1.5 12s3.5 7 10.5 7a10.4 10.4 0 0 0 4.6-1"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>
+                  </button>
+                </div>
               </div>
               <p class="auth-error" id="err"></p>
               <button class="auth-btn" id="btn" onclick="handleReset()">Cambiar contraseña</button>
@@ -211,6 +248,17 @@
     } else {
       renderError('Acción no reconocida. Usa el enlace exacto que recibiste por correo.');
     }
+
+    window.togglePwd = (id) => {
+      const input = document.getElementById(id);
+      const btn   = input?.nextElementSibling;
+      if (!input || !btn) return;
+
+      const show  = input.type === 'password';
+      input.type  = show ? 'text' : 'password';
+      btn.classList.toggle('is-visible', show);
+      btn.setAttribute('aria-label', show ? 'Ocultar contraseña' : 'Mostrar contraseña');
+    };
 
     window.handleReset = () => {
       const pwd  = document.getElementById('pwd').value;
