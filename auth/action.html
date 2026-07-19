@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -56,7 +57,11 @@
       margin-bottom: 20px;
     }
 
-    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
     .auth-form {
       width: 100%;
@@ -66,7 +71,11 @@
       gap: 12px;
     }
 
-    .auth-field { display: flex; flex-direction: column; gap: 6px; }
+    .auth-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
 
     .auth-field label {
       font-size: 13px;
@@ -93,8 +102,13 @@
       background: #fff;
     }
 
-    .auth-field-input-wrap { position: relative; }
-    .auth-field-input-wrap input { padding-right: 44px; }
+    .auth-field-input-wrap {
+      position: relative;
+    }
+
+    .auth-field-input-wrap input {
+      padding-right: 44px;
+    }
 
     .toggle-pwd {
       position: absolute;
@@ -113,10 +127,22 @@
       color: var(--muted);
     }
 
-    .toggle-pwd svg { width: 20px; height: 20px; }
-    .toggle-pwd .icon-off { display: none; }
-    .toggle-pwd.is-visible .icon-on { display: none; }
-    .toggle-pwd.is-visible .icon-off { display: block; }
+    .toggle-pwd svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .toggle-pwd .icon-on {
+      display: none;
+    }
+
+    .toggle-pwd.is-visible .icon-on {
+      display: block;
+    }
+
+    .toggle-pwd.is-visible .icon-off {
+      display: none;
+    }
 
     .auth-error {
       font-size: 13px;
@@ -139,8 +165,14 @@
       transition: opacity 0.15s;
     }
 
-    .auth-btn:hover    { opacity: 0.88; }
-    .auth-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .auth-btn:hover {
+      opacity: 0.88;
+    }
+
+    .auth-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
 
     .auth-footer {
       border-top: 1px solid var(--border);
@@ -148,10 +180,18 @@
       text-align: center;
     }
 
-    .auth-footer a { font-size: 13px; color: var(--faint); }
-    .auth-footer a:hover { color: var(--accent); text-decoration: none; }
+    .auth-footer a {
+      font-size: 13px;
+      color: var(--faint);
+    }
+
+    .auth-footer a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
   </style>
 </head>
+
 <body>
 
   <div class="auth-wrap">
@@ -176,16 +216,16 @@
     } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
 
     const app = initializeApp({
-      apiKey:     'AIzaSyB7RBqbr0LK8EXJNgO6JENfisjE38wFxX0',
+      apiKey: 'AIzaSyB7RBqbr0LK8EXJNgO6JENfisjE38wFxX0',
       authDomain: 'chambita-7774d.firebaseapp.com',
-      projectId:  'chambita-7774d',
+      projectId: 'chambita-7774d',
     });
 
-    const auth    = getAuth(app);
-    const params  = new URLSearchParams(window.location.search);
-    const mode    = params.get('mode');
+    const auth = getAuth(app);
+    const params = new URLSearchParams(window.location.search);
+    const mode = params.get('mode');
     const oobCode = params.get('oobCode');
-    const el      = document.getElementById('content');
+    const el = document.getElementById('content');
 
     function renderState(title, body) {
       el.innerHTML = `
@@ -251,38 +291,39 @@
 
     window.togglePwd = (id) => {
       const input = document.getElementById(id);
-      const btn   = input?.nextElementSibling;
+      const btn = input?.nextElementSibling;
       if (!input || !btn) return;
 
-      const show  = input.type === 'password';
-      input.type  = show ? 'text' : 'password';
+      const show = input.type === 'password';
+      input.type = show ? 'text' : 'password';
       btn.classList.toggle('is-visible', show);
       btn.setAttribute('aria-label', show ? 'Ocultar contraseña' : 'Mostrar contraseña');
     };
 
     window.handleReset = () => {
-      const pwd  = document.getElementById('pwd').value;
+      const pwd = document.getElementById('pwd').value;
       const pwd2 = document.getElementById('pwd2').value;
-      const err  = document.getElementById('err');
-      const btn  = document.getElementById('btn');
+      const err = document.getElementById('err');
+      const btn = document.getElementById('btn');
 
       err.textContent = '';
 
       if (pwd.length < 8) { err.textContent = 'Mínimo 8 caracteres.'; return; }
-      if (pwd !== pwd2)   { err.textContent = 'Las contraseñas no coinciden.'; return; }
+      if (pwd !== pwd2) { err.textContent = 'Las contraseñas no coinciden.'; return; }
 
-      btn.disabled    = true;
+      btn.disabled = true;
       btn.textContent = 'Cambiando...';
 
       confirmPasswordReset(auth, oobCode, pwd)
         .then(() => renderState('Contraseña actualizada ✓', 'Tu contraseña ha sido cambiada. Ya puedes iniciar sesión en Chambita.'))
         .catch(() => {
           err.textContent = 'Error al cambiar la contraseña. El enlace puede haber expirado.';
-          btn.disabled    = false;
+          btn.disabled = false;
           btn.textContent = 'Cambiar contraseña';
         });
     };
   </script>
 
 </body>
+
 </html>
