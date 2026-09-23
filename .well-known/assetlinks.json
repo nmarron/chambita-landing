@@ -1,10 +1,13 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "com.chambita",
-    "sha256_cert_fingerprints": [
-      "EE:A0:BC:0F:96:D6:C2:A9:CB:1E:21:38:78:7A:DA:BD:C1:07:EF:8B:B7:1B:CB:D1:37:8A:23:4F:C9:26:3D:8F"
-    ]
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.chambita",
+      "sha256_cert_fingerprints": [
+        "EE:A0:BC:0F:96:D6:C2:A9:CB:1E:21:38:78:7A:DA:BD:C1:07:EF:8B:B7:1B:CB:D1:37:8A:23:4F:C9:26:3D:8F",
+        "43:3C:EA:9E:C3:7F:BE:C4:91:31:6D:74:EA:03:46:C0:82:6B:74:E4:96:53:F2:0B:88:E3:C4:DB:44:02:C1:7A"
+      ]
+    }
   }
-}]
+]
