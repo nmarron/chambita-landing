@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>Te invitaron a Chambita</title>
+  <meta name="description" content="Encuentra chamba o contrata a alguien de confianza. Descarga Chambita y entra con tu código de invitación." />
+  <meta property="og:title" content="Te invitaron a Chambita" />
+  <meta property="og:description" content="Encuentra chamba o contrata a alguien de confianza cerca de ti." />
+  <link rel="stylesheet" href="/chambita.css" />
+  <link rel="stylesheet" href="/invite.css" />
+  <script src="/invite.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="site-header-logo"><img src="/chambita_logo.png" alt="" /><span>Chambita</span></a>
+    <a class="home-link" href="/">Conoce Chambita</a>
+  </header>
+  <main class="invite-page">
+    <div class="eyebrow">LA CHAMBA ESTÁ CERCA</div>
+    <h1>Te invitaron a <span>Chambita.</span></h1>
+    <p class="intro">Encuentra chamba o contrata a alguien de confianza en tu ciudad.</p>
+    <section class="invite-card" aria-label="Tu invitación">
+      <div id="invitation" hidden>
+        <label for="invite-code">Tu código de invitación</label>
+        <input id="invite-code" readonly spellcheck="false" autocomplete="off" aria-describedby="copy-status" />
+        <button id="copy-code" type="button">Copiar código</button>
+        <p id="copy-status" class="status" role="status" aria-live="polite"></p>
+      </div>
+      <p id="invalid-code" hidden>Este enlace no incluye un código válido. Pide a quien te invitó que lo comparta de nuevo. También puedes descargar Chambita y registrarte sin código.</p>
+      <noscript>Activa JavaScript para ver y copiar el código de esta invitación. También puedes copiarlo del mensaje que recibiste.</noscript>
+      <div class="download">
+        <h2>¿Todavía no tienes la app?</h2>
+        <p id="install-help">Descarga Chambita para empezar.</p>
+        <div class="stores">
+          <a class="store" href="https://apps.apple.com/app/id6762499947"><small>Descárgala en</small><strong>App Store</strong></a>
+          <a class="store" href="https://play.google.com/store/apps/details?id=com.chambita"><small>Descárgala en</small><strong>Google Play</strong></a>
+        </div>
+      </div>
+      <div id="installed" class="installed" hidden>
+        <p>¿Ya la tienes instalada?</p>
+        <a id="open-app" class="open-app">Abrir Chambita</a>
+        <p class="open-help">Si no se abre, vuelve al mensaje y toca el enlace de invitación.</p>
+      </div>
+    </section>
+    <p class="closing">Oficios, servicios y oportunidades. Todo cerca de ti.</p>
+  </main>
+  <footer class="invite-footer"><a href="/privacy">Privacidad</a><a href="/terms">Términos</a><a href="/">chambita.app</a></footer>
+</body>
+</html>
