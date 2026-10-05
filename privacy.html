@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="/chambita.css" />
 </head>
 <body>
-
   <header class="site-header">
     <a href="/" class="site-header-logo">
       <img src="/chambita_logo.png" alt="Chambita" />
@@ -19,14 +18,12 @@
       <a href="/data-deletion">Eliminación de datos</a>
     </nav>
   </header>
-
   <div class="page">
     <div class="doc-header">
       <p class="doc-header-eyebrow">Legal</p>
       <h1>Política de Privacidad</h1>
-      <p class="doc-header-meta">Última actualización: mayo 2026</p>
+      <p class="doc-header-meta">Última actualización: 5 de octubre de 2026</p>
     </div>
-
     <nav class="toc">
       <div class="toc-title">Contenido</div>
       <ol>
@@ -46,12 +43,11 @@
         <li><a href="#s14"><span class="toc-num">14</span>Contacto</a></li>
       </ol>
     </nav>
-
     <div class="section" id="s1">
       <div class="section-header"><span class="section-num">01</span><h2>Información que recopilamos</h2></div>
       <p>Cuando usas Chambita recopilamos la siguiente información, siempre con el propósito de brindarte el servicio:</p>
       <ul class="data-list">
-        <li><strong>Datos de cuenta:</strong> nombre, apellido y correo electrónico al registrarte o iniciar sesión con Google, Facebook o Apple.</li>
+        <li><strong>Datos de cuenta:</strong> nombre, apellido, correo electrónico e identificadores de autenticación al registrarte o iniciar sesión con Google, Facebook o Apple; fecha de nacimiento cuando la proporcionas o confirmas.</li>
         <li><strong>Perfil:</strong> foto de perfil, número de teléfono, ciudad de preferencia y biografía — todos opcionales.</li>
         <li><strong>Perfil de trabajador:</strong> oficio(s), tarifa, teléfonos de contacto y descripción profesional.</li>
         <li><strong>Perfil de negocio:</strong> nombre del negocio, giro(s), dirección, código postal, coordenadas geográficas, teléfonos, sitio web y fotografías del local.</li>
@@ -59,92 +55,90 @@
         <li><strong>Aplicaciones:</strong> registro de chambas a las que aplicas o que recibes.</li>
         <li><strong>Reseñas:</strong> calificaciones y comentarios que escribes o recibes.</li>
         <li><strong>Mensajes:</strong> contenido de las conversaciones dentro de la app.</li>
-        <li><strong>Verificación de identidad:</strong> fotografías de INE (frente y reverso), selfie y CURP — solo cuando solicitas verificarte voluntariamente.</li>
-        <li><strong>Datos de uso:</strong> eventos de navegación y comportamiento dentro de la app para mejorar la experiencia.</li>
+        <li><strong>Verificación de identidad:</strong> identificación oficial admitida (como INE o licencia), selfie o captura facial y datos biométricos procesados por Didit — solo cuando solicitas verificarte voluntariamente. Chambita conserva datos derivados y el resultado, conforme a la sección 4.</li>
+        <li><strong>Datos de uso:</strong> eventos de navegación y comportamiento, identificadores de usuario, datos del dispositivo y registros de diagnóstico para mejorar la experiencia y atender errores.</li>
         <li><strong>Token de dispositivo:</strong> identificador para envío de notificaciones push.</li>
       </ul>
     </div>
     <hr />
-
     <div class="section" id="s2">
       <div class="section-header"><span class="section-num">02</span><h2>Cómo usamos tu información</h2></div>
       <ul class="data-list">
         <li>Crear y gestionar tu cuenta.</li>
         <li>Conectar empleadores con trabajadores y negocios en tu zona.</li>
         <li>Mostrar tu perfil público cuando aplicas o publicas una chamba.</li>
-        <li>Procesar pagos de publicaciones a través de Stripe.</li>
+        <li>Validar compras de publicaciones y verificación realizadas mediante App Store o Google Play, y administrar créditos y suscripciones con RevenueCat.</li>
         <li>Enviarte notificaciones sobre chambas, aplicaciones y mensajes.</li>
         <li>Verificar tu identidad cuando lo solicitas.</li>
         <li>Moderar contenido para mantener la plataforma segura.</li>
-        <li>Detectar y prevenir fraudes o abusos.</li>
+        <li>Detectar y prevenir fraudes, suplantación, cuentas duplicadas o abusos.</li>
         <li>Mejorar la app con base en métricas de uso agregadas.</li>
         <li>Responder tus solicitudes de soporte.</li>
       </ul>
     </div>
     <hr />
-
     <div class="section" id="s3">
       <div class="section-header"><span class="section-num">03</span><h2>Inicio de sesión con Google, Facebook y Apple</h2></div>
-      <p>Si usas un proveedor externo para iniciar sesión, recopilamos únicamente el nombre y correo electrónico que ese proveedor nos comparte. No accedemos a tus contactos, publicaciones, historial de búsqueda ni ningún otro dato de tu cuenta en esas plataformas.</p>
+      <p>Si usas un proveedor externo para iniciar sesión, recopilamos el nombre, correo electrónico e identificadores de autenticación que ese proveedor nos comparte con tu autorización. No accedemos a tus contactos, publicaciones, historial de búsqueda para autenticar tu cuenta.</p>
       <p>Puedes revocar el acceso de Chambita desde la configuración de seguridad de Google, Facebook o Apple en cualquier momento.</p>
     </div>
     <hr />
-
     <div class="section" id="s4">
       <div class="section-header"><span class="section-num">04</span><h2>Verificación de identidad</h2></div>
-      <p>La verificación de identidad es <strong>completamente voluntaria</strong>. Si decides verificarte, nos envías fotografías de tu identificación oficial (INE), una selfie y opcionalmente tu CURP. Estos documentos son revisados manualmente por nuestro equipo y almacenados en servidores seguros (Microsoft Azure).</p>
-      <p>Los documentos de verificación se conservan únicamente el tiempo necesario para completar el proceso. Una vez verificada tu identidad, conservamos el resultado (verificado/rechazado) pero no los documentos originales de forma indefinida.</p>
+      <p>La verificación de identidad es <strong>completamente voluntaria</strong> y se realiza mediante <strong>Didit</strong>. Si decides verificarte, el proveedor captura y procesa tu identificación oficial admitida (como INE o licencia), selfie o captura facial y datos biométricos para comprobar autenticidad, presencia y coincidencia de identidad, y detectar suplantación o cuentas duplicadas. Puede realizar comprobaciones automatizadas y revisión adicional cuando corresponda.</p>
+    <p>En este flujo, las imágenes de identificación y capturas faciales se almacenan en Didit, no como documentos de verificación en Azure o PostgreSQL de Chambita. Didit actúa como encargado del tratamiento por cuenta de Chambita para la verificación solicitada. La contratación del proveedor no elimina las obligaciones legales de Chambita respecto de tus datos.</p>
+    <p>Chambita conserva el resultado y determinados datos derivados: nombre y apellidos verificados, fecha de nacimiento, tipo y país del documento, últimos cuatro caracteres de su número cuando están disponibles, resultado de comprobación del registro cuando corresponda, estado, motivo o puntuación de decisión, identificadores de sesión y fechas. También puede conservar IP, información técnica y ubicación facilitada durante el proceso. Estos datos siguen siendo datos personales. Los documentos y la biometría no se muestran en el perfil público.</p>
+      <p>Los datos de cada sesión de verificación en Didit, incluidas las imágenes de identificación, selfies y la plantilla biométrica asociada, se conservan durante un <strong>máximo de dos años desde la creación de la sesión</strong>, para atender aclaraciones, mantener evidencia del proceso y detectar duplicados o suplantación durante una ventana limitada. Al vencer ese periodo se elimina la sesión y su plantilla biométrica; no se configura conservación separada de la plantilla después del borrado de la sesión. Procederá su eliminación antes cuando dejen de ser necesarios o corresponda atender una solicitud de cancelación, considerando las obligaciones legales de conservación o bloqueo aplicables.</p>
+    <p>El plazo de dos años es la política de conservación de estas sesiones, no un plazo obligatorio general establecido por la legislación mexicana ni un plazo aplicable a todos los datos de Chambita. Los datos derivados almacenados en Chambita se conservan mientras sean necesarios para la cuenta y las finalidades informadas, y se eliminan al borrar la cuenta, salvo registros mínimos sujetos a obligaciones legales.</p>
+    <p>Antes de la captura se debe proporcionar la información de privacidad y recabar el consentimiento requerido, incluido el aplicable al tratamiento biométrico. Puedes solicitar aclaración o revisión del resultado mediante el contacto de esta política. Didit informa que procesa los datos por defecto en la Unión Europea, con tratamientos internacionales conforme al servicio contratado. Consulta su <a href="https://didit.me/terms/privacy-policy/" target="_blank" rel="noopener noreferrer">política de privacidad</a>. Los registros técnicos o de auditoría del proveedor pueden tener plazos separados de los datos de la sesión.</p>
     </div>
     <hr />
-
     <div class="section" id="s5">
       <div class="section-header"><span class="section-num">05</span><h2>Pagos</h2></div>
-      <p>Los pagos son procesados por <strong>Stripe</strong>, un proveedor certificado PCI-DSS. Chambita <strong>nunca almacena</strong> los datos de tu tarjeta de crédito o débito — toda la información de pago se transmite directamente a Stripe de forma cifrada.</p>
-      <p>Conservamos un registro del historial de pagos (monto, fecha, referencia) para efectos de facturación, soporte y cumplimiento legal.</p>
+      <p>Las compras dentro de la app son procesadas por <strong>App Store o Google Play</strong>. <strong>RevenueCat</strong> se utiliza para validar transacciones y administrar créditos, suscripciones y beneficios. Chambita no almacena el número completo ni el código de seguridad de tu tarjeta de crédito o débito; los datos de pago que proporcionas a la tienda son tratados por Apple o Google.</p>
+      <p>Conservamos registros de compras (producto, monto, moneda, fecha, referencia, estado y vigencia) para entregar los beneficios, prestar soporte y cumplir obligaciones legales. La suscripción mensual se renueva automáticamente hasta su cancelación; el pago único de verificación por 30 días y las compras consumibles de publicaciones no se renuevan. La eliminación de la cuenta o de la app no cancela automáticamente la suscripción: debes gestionarla en la tienda correspondiente.</p>
     </div>
     <hr />
-
     <div class="section" id="s6">
       <div class="section-header"><span class="section-num">06</span><h2>Mensajes y chat</h2></div>
       <p>Los mensajes entre usuarios se almacenan en <strong>Firebase Firestore</strong> (Google). El contenido de los mensajes es accesible para los participantes de la conversación y para el equipo de Chambita en caso de reportes de abuso o investigaciones de seguridad.</p>
       <p>No vendemos ni compartimos el contenido de tus mensajes con terceros para fines publicitarios.</p>
     </div>
     <hr />
-
     <div class="section" id="s7">
       <div class="section-header"><span class="section-num">07</span><h2>Notificaciones push</h2></div>
       <p>Si otorgas permiso, almacenamos un token de dispositivo (FCM Token) para enviarte notificaciones sobre nuevas chambas de tu oficio, aplicaciones recibidas, mensajes y actualizaciones importantes. Puedes desactivar las notificaciones en cualquier momento desde los ajustes de tu dispositivo.</p>
     </div>
     <hr />
-
     <div class="section" id="s8">
       <div class="section-header"><span class="section-num">08</span><h2>Ubicación</h2></div>
       <p>La función "Cerca de mí" utiliza tu ubicación aproximada para mostrarte negocios y trabajadores cercanos. El acceso a tu ubicación es <strong>opcional</strong> — puedes usar Chambita sin habilitarlo seleccionando manualmente tu ciudad.</p>
-      <p>Tu ubicación en tiempo real no se almacena en nuestros servidores ni se comparte con otros usuarios.</p>
+      <p>La ubicación facilitada durante una verificación puede conservarse en nuestros servidores junto con su precisión y fecha de captura para seguridad y prevención de fraude. Esa ubicación de verificación no se publica para otros usuarios. Las coordenadas de negocios que publicas se utilizan para mostrarlos en el directorio.</p>
     </div>
     <hr />
-
     <div class="section" id="s9">
       <div class="section-header"><span class="section-num">09</span><h2>Terceros y proveedores</h2></div>
       <p>Para operar Chambita trabajamos con los siguientes proveedores de confianza. Cada uno tiene sus propias políticas de privacidad:</p>
       <div class="providers">
         <div class="providers-header"><span>Proveedor</span><span>Uso</span></div>
         <div class="provider-row"><span class="provider-name">Google Firebase</span><span class="provider-role">Autenticación, base de datos de chat (Firestore), notificaciones push (FCM) y configuración remota</span></div>
-        <div class="provider-row"><span class="provider-name">Stripe</span><span class="provider-role">Procesamiento de pagos con tarjeta</span></div>
-        <div class="provider-row"><span class="provider-name">Microsoft Azure</span><span class="provider-role">Almacenamiento de imágenes de perfil, chambas y documentos de verificación</span></div>
+        <div class="provider-row"><span class="provider-name">Didit</span><span class="provider-role">Verificación de identidad, identificación oficial, captura facial y comprobaciones de autenticidad</span></div>
+      <div class="provider-row"><span class="provider-name">App Store / Google Play</span><span class="provider-role">Compras, suscripciones y procesamiento de pagos dentro de la app</span></div>
+      <div class="provider-row"><span class="provider-name">RevenueCat</span><span class="provider-role">Validación de compras y administración de créditos, suscripciones y beneficios</span></div>
+      <div class="provider-row"><span class="provider-name">Resend</span><span class="provider-role">Envío de correos del servicio</span></div>
+        <div class="provider-row"><span class="provider-name">Microsoft Azure</span><span class="provider-role">Almacenamiento de imágenes de perfil, negocios y chambas</span></div>
         <div class="provider-row"><span class="provider-name">Railway</span><span class="provider-role">Infraestructura del servidor y base de datos principal (PostgreSQL)</span></div>
-        <div class="provider-row"><span class="provider-name">Sentry</span><span class="provider-role">Monitoreo de errores técnicos — no contiene datos personales identificables</span></div>
-        <div class="provider-row"><span class="provider-name">PostHog</span><span class="provider-role">Análisis de comportamiento dentro de la app — datos agregados y anonimizados</span></div>
+        <div class="provider-row"><span class="provider-name">Sentry</span><span class="provider-role">Monitoreo de errores técnicos y diagnóstico; puede incluir identificadores de usuario y datos técnicos</span></div>
+        <div class="provider-row"><span class="provider-name">PostHog</span><span class="provider-role">Análisis de eventos de uso; puede incluir identificadores de usuario y datos técnicos, además de métricas agregadas</span></div>
         <div class="provider-row"><span class="provider-name">Google Maps / Places</span><span class="provider-role">Búsqueda y autocompletado de direcciones</span></div>
         <div class="provider-row"><span class="provider-name">Facebook</span><span class="provider-role">Inicio de sesión opcional con cuenta de Facebook</span></div>
         <div class="provider-row"><span class="provider-name">Apple</span><span class="provider-role">Inicio de sesión opcional con Apple ID</span></div>
       </div>
       <div class="callout" style="margin-top: 20px;">
-        <p><strong>No vendemos tu información.</strong> Nunca compartimos ni vendemos tus datos personales a terceros con fines publicitarios o comerciales.</p>
+        <p><strong>No vendemos tu información.</strong> No vendemos tus datos personales para publicidad. Los comunicamos a proveedores en la medida necesaria para las finalidades descritas y a autoridades cuando exista obligación o requerimiento válido. Los proveedores pueden procesar datos fuera de México conforme a los acuerdos y medidas aplicables.</p>
       </div>
     </div>
     <hr />
-
     <div class="section" id="s10">
       <div class="section-header"><span class="section-num">10</span><h2>Seguridad</h2></div>
       <p>Implementamos medidas técnicas y organizativas para proteger tu información:</p>
@@ -152,42 +146,40 @@
         <li>Todas las comunicaciones entre la app y nuestros servidores usan <strong>HTTPS/TLS</strong>.</li>
         <li>Las contraseñas son gestionadas y cifradas por Firebase Authentication — nunca las almacenamos en texto plano.</li>
         <li>El acceso a la base de datos está restringido y auditado.</li>
-        <li>Las imágenes y documentos se almacenan en Azure Blob Storage con acceso controlado.</li>
+        <li>Las imágenes de perfil, negocios y chambas se almacenan en Azure Blob Storage. Los documentos y capturas faciales del flujo de verificación se almacenan en Didit, con las medidas de seguridad del proveedor.</li>
         <li>Eliminación de cuenta requiere reautenticación con tu proveedor de identidad.</li>
       </ul>
       <p style="margin-top: 12px;">Aunque tomamos todas las precauciones razonables, ningún sistema es completamente infalible. En caso de una brecha de seguridad que afecte tus datos, te notificaremos conforme a la ley aplicable.</p>
     </div>
     <hr />
-
     <div class="section" id="s11">
       <div class="section-header"><span class="section-num">11</span><h2>Eliminación de cuenta y datos</h2></div>
       <p>Puedes eliminar tu cuenta en cualquier momento desde <strong>Ajustes → Eliminar cuenta</strong> dentro de la app. El proceso requiere que confirmes tu identidad con tu contraseña, cuenta de Google, Facebook o Apple.</p>
       <p>Al solicitar la eliminación:</p>
       <ul class="data-list">
         <li>Tu perfil, publicaciones y datos personales identificables se marcan para eliminación de forma inmediata y dejan de ser visibles para otros usuarios.</li>
-        <li>La eliminación permanente e irreversible de tus datos se completa en un plazo máximo de <strong>30 días</strong>.</li>
-        <li>Los registros de pagos pueden conservarse por el tiempo que exige la legislación fiscal mexicana (5 años).</li>
+        <li>La eliminación de cuenta elimina o anonimiza los datos locales correspondientes, incluidos los registros locales de verificación. La limpieza de imágenes y chat puede ejecutarse mediante procesos posteriores. No se establece que el borrado de cuenta elimine automáticamente todos los datos de proveedores.</li>
+        <li>Los registros mínimos de compras pueden conservarse durante los plazos fiscales, contractuales y de prescripción aplicables, con tratamiento restringido cuando corresponda. Esto no implica conservar la INE o la selfie para fines fiscales.</li>
         <li>Las reseñas que otros usuarios te dejaron pueden conservarse de forma anonimizada para mantener la integridad del historial de la plataforma.</li>
       </ul>
       <div class="callout">
-        <p>También puedes solicitar la eliminación de tus datos enviando un correo a <a href="mailto:dev@chambita.app">dev@chambita.app</a> con el asunto <strong>"Borrar mis datos"</strong>. Procesamos tu solicitud en un plazo máximo de 30 días.</p>
+        <p>También puedes solicitar la eliminación de tus datos enviando un correo a <a href="mailto:dev@chambita.app">dev@chambita.app</a> con el asunto <strong>"Borrar mis datos"</strong>. Para solicitar también el borrado anticipado en Didit, indica expresamente <strong>"Eliminar mis sesiones y plantillas biométricas en Didit"</strong>. La acción de eliminar la cuenta en la app no envía actualmente una orden automática de borrado al proveedor; Chambita gestionará la solicitud cuando proceda. Sin una solicitud anterior, se aplica el máximo de dos años por sesión descrito en la sección 4, siempre que siga existiendo una finalidad válida de conservación.</p>
       </div>
-    </div>
+      <p>Puedes ejercer los derechos de acceso, rectificación, cancelación y oposición (ARCO), revocar el consentimiento o solicitar limitar el uso o divulgación de tus datos mediante el mismo correo. Incluye tu nombre, correo de la cuenta, medio de respuesta, derecho que solicitas y descripción de los datos; para rectificación, indica la corrección y su respaldo. Solicitaremos únicamente los elementos necesarios para acreditar tu identidad o representación por un canal adecuado.</p>
+    <p>Comunicaremos la determinación en un máximo de <strong>20 días</strong> desde la recepción de la solicitud y, si procede, la haremos efectiva dentro de los <strong>15 días</strong> siguientes a la comunicación, conforme al cómputo, requisitos y prórrogas legales aplicables. Te informaremos si falta información o corresponde una excepción. La cancelación puede requerir un periodo de bloqueo por responsabilidades u obligaciones legales. La revocación no afecta retroactivamente tratamientos lícitos y puede impedir una función que necesite esos datos.</p>
+  </div>
     <hr />
-
     <div class="section" id="s12">
       <div class="section-header"><span class="section-num">12</span><h2>Menores de edad</h2></div>
       <p>Chambita está dirigida exclusivamente a personas mayores de 18 años. No recopilamos intencionalmente información de menores de edad. Si detectamos que un usuario es menor de edad, eliminaremos su cuenta. Si eres padre o tutor y crees que tu hijo tiene una cuenta, contáctanos a <a href="mailto:dev@chambita.app">dev@chambita.app</a>.</p>
     </div>
     <hr />
-
     <div class="section" id="s13">
       <div class="section-header"><span class="section-num">13</span><h2>Cambios a esta política</h2></div>
       <p>Podemos actualizar esta política cuando sea necesario. Cuando los cambios sean significativos, te notificaremos mediante un aviso dentro de la app con al menos 7 días de anticipación. La fecha de la última actualización siempre estará visible al pie de esta página.</p>
-      <p>El uso continuado de Chambita después de la entrada en vigor de los cambios implica tu aceptación de la política actualizada.</p>
+      <p>Los cambios se aplicarán conforme a la legislación vigente. Cuando una nueva finalidad o tratamiento requiera consentimiento específico, se solicitará antes de realizarlo; el uso continuado de la app no sustituye el consentimiento expreso exigible.</p>
     </div>
     <hr />
-
     <div class="section" id="s14">
       <div class="section-header"><span class="section-num">14</span><h2>Contacto</h2></div>
       <p>Si tienes preguntas, solicitudes o inquietudes sobre esta política o el manejo de tus datos, escríbenos:</p>
@@ -195,14 +187,11 @@
         <p>📧 <a href="mailto:dev@chambita.app">dev@chambita.app</a><br />Chambita · Ensenada, Baja California, México</p>
       </div>
     </div>
-
     <hr style="margin-bottom: 0;" />
   </div>
-
   <footer class="site-footer">
     <p>© 2026 Chambita. Todos los derechos reservados.</p>
-    <p>Última actualización: mayo 2026</p>
+    <p>Última actualización: 5 de octubre de 2026</p>
   </footer>
-
 </body>
 </html>
