@@ -4,8 +4,8 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   if (!bands.length || !('IntersectionObserver' in window)) return;
 
-  // Must stay below the 14% overscan of .parallax-media so no edge is ever exposed.
-  const STRENGTH = 0.12;
+  // Must stay below the 42% overscan of .parallax-media so no edge is ever exposed.
+  const STRENGTH = 0.4;
   const visible = new Set();
   let frame = 0;
 
@@ -16,7 +16,8 @@
       const rect = band.getBoundingClientRect();
       const distance = rect.top + rect.height / 2 - viewport / 2;
       const progress = Math.max(-1, Math.min(1, distance / ((viewport + rect.height) / 2)));
-      band.style.setProperty('--parallax-shift', `${(progress * rect.height * STRENGTH).toFixed(1)}px`);
+      // Opposite to the scroll direction, so the image trails the page.
+      band.style.setProperty('--parallax-shift', `${(-progress * rect.height * STRENGTH).toFixed(1)}px`);
     }
   };
 
