@@ -21,39 +21,57 @@
 
     /* ── Hero ── */
     .hero {
-      min-height: 100vh;
+      min-height: calc(100svh - 60px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 120px 24px 80px;
+      padding: 96px 24px 72px;
       position: relative;
       overflow: hidden;
+      background: var(--text);
+      color: #fff;
     }
 
-    .hero-bg {
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero-overlay {
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 60% 50% at 50% -10%, rgba(92,24,200,0.07) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 40% at 80% 60%, rgba(124,58,237,0.05) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 40% at 20% 70%, rgba(92,24,200,0.04) 0%, transparent 60%);
+        radial-gradient(ellipse 70% 60% at 50% 45%, rgba(26,26,46,0.4) 0%, rgba(26,26,46,0) 70%),
+        linear-gradient(180deg, rgba(26,26,46,0.62) 0%, rgba(26,26,46,0.68) 55%, rgba(60,14,130,0.82) 100%);
       pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: var(--accent-light);
-      color: var(--accent);
+      background: rgba(255,255,255,0.14);
+      color: #fff;
       font-size: 13px;
       font-weight: 600;
       padding: 6px 14px;
       border-radius: 20px;
       margin-bottom: 28px;
-      border: 1px solid rgba(92,24,200,0.15);
+      border: 1px solid rgba(255,255,255,0.28);
+      backdrop-filter: blur(8px);
     }
 
     .hero h1 {
@@ -61,24 +79,41 @@
       font-weight: 800;
       letter-spacing: -2px;
       line-height: 1.05;
-      color: var(--text);
+      color: #fff;
       margin-bottom: 24px;
       max-width: 780px;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.25);
     }
 
     .hero h1 em {
       font-style: normal;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      background: linear-gradient(90deg, #c9b0ff, #ffffff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .hero-sub {
       font-size: clamp(16px, 2.5vw, 20px);
-      color: var(--muted);
+      color: rgba(255,255,255,0.88);
       line-height: 1.65;
       max-width: 520px;
       margin-bottom: 48px;
+    }
+
+    .hero .store-btn {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero .store-btn:hover { background: rgba(255,255,255,0.24); opacity: 1; }
+    .hero .store-note { color: rgba(255,255,255,0.72); }
+    .hero .cities-label { color: rgba(255,255,255,0.72); }
+
+    .hero .city-pill {
+      color: #fff;
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.25);
     }
 
     /* ── Store buttons ── */
@@ -396,28 +431,34 @@
   </header>
 
   <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-badge"><span>🔧</span> Ya disponible en Ensenada</div>
-    <h1>La chamba está<br /><em>cerca de ti</em></h1>
-    <p class="hero-sub">Chambita conecta trabajadores independientes con quienes necesitan un servicio en tu ciudad. Rápido, directo y sin complicaciones.</p>
-    <div class="store-buttons">
-      <a href="#descargar" class="store-btn">
-        <svg viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        <div class="store-btn-text"><span class="store-btn-sub">Descarga en el</span><span class="store-btn-name">App Store</span></div>
-      </a>
-      <a href="#descargar" class="store-btn">
-        <svg viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76c.3.17.64.22.99.14l12.6-7.28-2.75-2.75-10.84 9.89zM.23 1.46C.09 1.76 0 2.1 0 2.5v19c0 .4.09.74.23 1.04l.07.07 10.64-10.64v-.25L.3 1.39l-.07.07zM20.54 10.27l-2.88-1.66-3.08 3.08 3.08 3.08 2.9-1.67c.83-.48.83-1.25-.02-1.83zM3.18.24l12.6 7.28-2.75 2.75L2.19.38C2.52.17 2.9.1 3.18.24z"/></svg>
-        <div class="store-btn-text"><span class="store-btn-sub">Disponible en</span><span class="store-btn-name">Google Play</span></div>
-      </a>
-    </div>
-    <p class="store-note">iOS y Android · Gratis durante el lanzamiento</p>
-    <div class="cities">
-      <span class="cities-label">Disponible en</span>
-      <span class="city-pill">Ensenada</span>
-      <span class="city-pill">Tijuana</span>
-      <span class="city-pill">Mexicali</span>
-      <span class="city-pill">Rosarito</span>
-      <span class="city-pill">+ más ciudades pronto</span>
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="/video/portada-poster.jpg" aria-hidden="true" data-story-video>
+      <source src="/video/portada-640.mp4" type="video/mp4" media="(max-width: 800px)" />
+      <source src="/video/portada-1280.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><span>🔧</span> Ya disponible en Ensenada</div>
+      <h1>La chamba está<br /><em>cerca de ti</em></h1>
+      <p class="hero-sub">Chambita conecta trabajadores independientes con quienes necesitan un servicio en tu ciudad. Rápido, directo y sin complicaciones.</p>
+      <div class="store-buttons">
+        <a href="#descargar" class="store-btn">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div class="store-btn-text"><span class="store-btn-sub">Descarga en el</span><span class="store-btn-name">App Store</span></div>
+        </a>
+        <a href="#descargar" class="store-btn">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76c.3.17.64.22.99.14l12.6-7.28-2.75-2.75-10.84 9.89zM.23 1.46C.09 1.76 0 2.1 0 2.5v19c0 .4.09.74.23 1.04l.07.07 10.64-10.64v-.25L.3 1.39l-.07.07zM20.54 10.27l-2.88-1.66-3.08 3.08 3.08 3.08 2.9-1.67c.83-.48.83-1.25-.02-1.83zM3.18.24l12.6 7.28-2.75 2.75L2.19.38C2.52.17 2.9.1 3.18.24z"/></svg>
+          <div class="store-btn-text"><span class="store-btn-sub">Disponible en</span><span class="store-btn-name">Google Play</span></div>
+        </a>
+      </div>
+      <p class="store-note">iOS y Android · Gratis durante el lanzamiento</p>
+      <div class="cities">
+        <span class="cities-label">Disponible en</span>
+        <span class="city-pill">Ensenada</span>
+        <span class="city-pill">Tijuana</span>
+        <span class="city-pill">Mexicali</span>
+        <span class="city-pill">Rosarito</span>
+        <span class="city-pill">+ más ciudades pronto</span>
+      </div>
     </div>
   </section>
 
@@ -590,5 +631,6 @@
   </footer>
 
   <script src="/parallax.js" defer></script>
+  <script src="/story-video.js" defer></script>
 </body>
 </html>
