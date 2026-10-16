@@ -5,435 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chambita — Encuentra trabajo cerca de ti</title>
   <meta name="description" content="Chambita conecta trabajadores independientes con quienes necesitan una chamba en tu ciudad. Plomeros, electricistas, carpinteros y más." />
-  <link rel="stylesheet" href="/chambita.css" />
-  <style>
-    /* ── Nav ── */
-    .nav-cta {
-      background: var(--accent) !important;
-      color: #fff !important;
-      padding: 8px 18px;
-      border-radius: 20px;
-      font-size: 13px !important;
-      font-weight: 600 !important;
-    }
-
-    .nav-cta:hover { opacity: 0.88; color: #fff !important; text-decoration: none; }
-
-    /* ── Hero ── */
-    .hero {
-      min-height: calc(100svh - 60px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 96px 24px 72px;
-      position: relative;
-      overflow: hidden;
-      background: var(--text);
-      color: #fff;
-    }
-
-    .hero-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 70% 60% at 50% 45%, rgba(26,26,46,0.4) 0%, rgba(26,26,46,0) 70%),
-        linear-gradient(180deg, rgba(26,26,46,0.62) 0%, rgba(26,26,46,0.68) 55%, rgba(60,14,130,0.82) 100%);
-      pointer-events: none;
-    }
-
-    .hero-content {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(255,255,255,0.14);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 6px 14px;
-      border-radius: 20px;
-      margin-bottom: 28px;
-      border: 1px solid rgba(255,255,255,0.28);
-      backdrop-filter: blur(8px);
-    }
-
-    .hero h1 {
-      font-size: clamp(40px, 7vw, 72px);
-      font-weight: 800;
-      letter-spacing: -2px;
-      line-height: 1.05;
-      color: #fff;
-      margin-bottom: 24px;
-      max-width: 780px;
-      text-shadow: 0 2px 24px rgba(0,0,0,0.25);
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      background: linear-gradient(90deg, #c9b0ff, #ffffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-sub {
-      font-size: clamp(16px, 2.5vw, 20px);
-      color: rgba(255,255,255,0.88);
-      line-height: 1.65;
-      max-width: 520px;
-      margin-bottom: 48px;
-    }
-
-    .hero .store-btn {
-      background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.3);
-      backdrop-filter: blur(8px);
-    }
-
-    .hero .store-btn:hover { background: rgba(255,255,255,0.24); opacity: 1; }
-    .hero .store-note { color: rgba(255,255,255,0.72); }
-    .hero .cities-label { color: rgba(255,255,255,0.72); }
-
-    .hero .city-pill {
-      color: #fff;
-      background: rgba(255,255,255,0.12);
-      border-color: rgba(255,255,255,0.25);
-    }
-
-    /* ── Store buttons ── */
-    .store-buttons {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 16px;
-    }
-
-    .store-btn {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--text);
-      color: #fff;
-      padding: 12px 22px;
-      border-radius: 12px;
-      transition: opacity 0.15s, transform 0.1s;
-      min-width: 160px;
-      text-decoration: none;
-    }
-
-    .store-btn:hover { opacity: 0.85; transform: translateY(-1px); text-decoration: none; }
-    .store-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
-    .store-btn-text { display: flex; flex-direction: column; }
-    .store-btn-sub  { font-size: 10px; opacity: 0.7; line-height: 1; margin-bottom: 2px; }
-    .store-btn-name { font-size: 15px; font-weight: 700; line-height: 1; }
-    .store-note { font-size: 13px; color: var(--faint); font-family: var(--mono); }
-
-    .cities {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 48px;
-    }
-
-    .cities-label { font-size: 13px; color: var(--faint); font-family: var(--mono); margin-right: 4px; }
-
-    .city-pill {
-      font-size: 13px;
-      color: var(--muted);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 4px 12px;
-      font-weight: 500;
-    }
-
-    /* ── Sections ── */
-    section { padding: 100px 24px; }
-    .container { max-width: 1080px; margin: 0 auto; }
-
-    .section-label {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-size: clamp(28px, 4vw, 44px);
-      font-weight: 800;
-      letter-spacing: -1px;
-      line-height: 1.1;
-      color: var(--text);
-      margin-bottom: 16px;
-    }
-
-    .section-sub { font-size: 17px; color: var(--muted); line-height: 1.65; max-width: 520px; }
-
-    /* ── How ── */
-    .how { background: var(--surface); }
-
-    .how-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2px;
-      margin-top: 56px;
-    }
-
-    .how-card {
-      background: var(--bg);
-      padding: 36px 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .how-card:first-child { border-radius: 16px 0 0 16px; }
-    .how-card:last-child  { border-radius: 0 16px 16px 0; }
-
-    .how-num {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--accent);
-      letter-spacing: 1px;
-      background: var(--accent-light);
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .how-card h3 { font-size: 18px; font-weight: 700; letter-spacing: -0.3px; color: var(--text); }
-    .how-card p  { font-size: 15px; color: var(--muted); line-height: 1.65; }
-
-    /* ── For who ── */
-    .forwho-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
-
-    .forwho-card {
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .forwho-card.accent { background: var(--accent); border-color: var(--accent); }
-
-    .forwho-card h3 { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); }
-    .forwho-card.accent h3 { color: #fff; }
-    .forwho-card p  { font-size: 15px; color: var(--muted); line-height: 1.65; }
-    .forwho-card.accent p { color: rgba(255,255,255,0.75); }
-
-    .forwho-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-
-    .forwho-list li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 15px;
-      color: var(--muted);
-    }
-
-    .forwho-card.accent .forwho-list li { color: rgba(255,255,255,0.85); }
-
-    .forwho-list li::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-    }
-
-    .forwho-card.accent .forwho-list li::before { background: rgba(255,255,255,0.5); }
-
-    /* ── Features ── */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-      margin-top: 56px;
-    }
-
-    .feature-card {
-      background: var(--surface);
-      border-radius: 16px;
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .feature-icon { font-size: 28px; }
-    .feature-card h3 { font-size: 16px; font-weight: 700; color: var(--text); }
-    .feature-card p  { font-size: 14px; color: var(--muted); line-height: 1.6; }
-
-    /* ── Trades ── */
-    .trades { background: var(--surface); }
-
-    .trades-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 40px; }
-
-    .trade-pill {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 8px 16px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text);
-      transition: border-color 0.15s;
-    }
-
-    .trade-pill:hover { border-color: var(--accent); }
-    .trade-pill span  { font-size: 18px; }
-
-    /* ── CTA ── */
-    .cta-section { text-align: center; background: var(--text); color: #fff; }
-    .cta-section .section-label { color: rgba(255,255,255,0.4); }
-    .cta-section .section-title { color: #fff; }
-    .cta-section .section-sub   { color: rgba(255,255,255,0.6); margin: 0 auto 48px; }
-    .cta-section .store-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); }
-    .cta-section .store-btn:hover { background: rgba(255,255,255,0.18); }
-
-    /* ── Parallax bands ── */
-    .parallax-band {
-      position: relative;
-      overflow: hidden;
-      min-height: clamp(420px, 72vh, 680px);
-      display: flex;
-      align-items: flex-end;
-      padding: 0;
-      background: var(--text);
-      color: #fff;
-    }
-
-    .parallax-media {
-      position: absolute;
-      inset: -42% 0;
-      transform: translate3d(0, var(--parallax-shift, 0px), 0);
-      will-change: transform;
-    }
-
-    .parallax-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: var(--parallax-focus, center);
-      display: block;
-    }
-
-    .parallax-band.jardineria { --parallax-focus: 68% 40%; }
-    .parallax-band.costura    { --parallax-focus: 62% 35%; }
-
-    .parallax-overlay {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(26,26,46,0.82) 0%, rgba(26,26,46,0.45) 45%, rgba(26,26,46,0) 75%),
-        linear-gradient(0deg, rgba(92,24,200,0.35) 0%, rgba(92,24,200,0) 55%);
-      pointer-events: none;
-    }
-
-    .parallax-content {
-      position: relative;
-      width: 100%;
-      padding: 96px 24px;
-    }
-
-    .parallax-content .section-label { color: rgba(255,255,255,0.7); }
-    .parallax-content .section-title { color: #fff; max-width: 560px; }
-    .parallax-content .section-sub   { color: rgba(255,255,255,0.82); }
-
-    /* ── Footer ── */
-    footer { border-top: 1px solid var(--border); padding: 40px 24px; }
-
-    .footer-inner {
-      max-width: 1080px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .footer-logo { display: flex; align-items: center; gap: 8px; }
-    .footer-logo img { width: 28px; height: 28px; border-radius: 7px; }
-
-    .footer-logo span {
-      font-size: 15px;
-      font-weight: 700;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .footer-links { display: flex; gap: 24px; list-style: none; }
-    .footer-links a { font-size: 13px; color: var(--faint); transition: color 0.15s; }
-    .footer-links a:hover { color: var(--muted); text-decoration: none; }
-    .footer-copy { font-size: 13px; color: var(--faint); font-family: var(--mono); }
-
-    @media (max-width: 640px) {
-      .forwho-grid { grid-template-columns: 1fr; }
-      .how-card:first-child { border-radius: 16px 16px 0 0; }
-      .how-card:last-child  { border-radius: 0 0 16px 16px; }
-      section { padding: 72px 20px; }
-      .forwho-card { padding: 28px 24px; }
-      .parallax-band { min-height: 460px; }
-      .parallax-band.jardineria { --parallax-focus: 80% 35%; }
-      .parallax-content { padding: 64px 20px; }
-      .parallax-overlay {
-        background: linear-gradient(0deg, rgba(26,26,46,0.9) 0%, rgba(26,26,46,0.55) 50%, rgba(26,26,46,0.1) 100%);
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/css/base.css" />
+  <link rel="stylesheet" href="/assets/css/document-header.css" />
+  <link rel="stylesheet" href="/assets/css/landing.css" />
+  <link rel="stylesheet" href="/assets/css/navigation.css" />
+  <script src="/assets/js/navigation.js" defer></script>
 </head>
 <body>
 
-  <header class="site-header">
-    <a href="/" class="site-header-logo">
-      <img src="/chambita_logo.png" alt="Chambita" />
-      <span>Chambita</span>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="landing-header" data-navigation>
+    <a href="/" class="landing-brand" aria-label="Chambita, inicio">
+      <img src="/assets/images/brand/chambita_logo.png" alt="" width="34" height="34" />
+      <span>Chambita<span class="brand-dot">.</span></span>
     </a>
-    <nav class="site-header-nav">
-      <a href="#como-funciona">Cómo funciona</a>
-      <a href="#para-quien">Para quién</a>
-      <a href="#oficios">Oficios</a>
-      <a href="#descargar" class="nav-cta">Descargar</a>
+    <nav class="landing-nav" id="landing-nav" aria-label="Navegación principal">
+      <a class="nav-link" href="#como-funciona">Cómo funciona</a>
+      <div class="nav-disclosure">
+        <a class="nav-link nav-fallback" href="#para-quien">Para quién</a>
+        <button class="nav-link nav-disclosure-trigger" type="button" hidden aria-expanded="false" aria-controls="audience-panel">
+          Para quién <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg>
+        </button>
+        <div class="audience-panel" id="audience-panel" hidden>
+          <p class="panel-eyebrow">Tu próxima chamba empieza aquí</p>
+          <div class="audience-options">
+            <a class="audience-option" href="#trabajadores">
+              <span class="audience-symbol" aria-hidden="true">↗</span>
+              <span><strong>Busco trabajo</strong><small>Comparte tu oficio y encuentra chambas cerca de ti.</small></span>
+            </a>
+            <a class="audience-option" href="#contratar">
+              <span class="audience-symbol" aria-hidden="true">⌂</span>
+              <span><strong>Necesito contratar</strong><small>Publica lo que necesitas y conecta con trabajadores.</small></span>
+            </a>
+          </div>
+          <a class="audience-overview" href="#para-quien">Conoce cómo funciona para ti <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <a class="nav-link" href="#oficios">Oficios</a>
     </nav>
+    <div class="nav-actions">
+      <a href="#descargar" class="download-link">Descargar <span aria-hidden="true">↗</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="landing-nav" aria-label="Abrir menú" hidden>
+        <span></span><span></span>
+      </button>
+    </div>
   </header>
 
+  <main id="contenido">
   <section class="hero">
-    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="/video/portada-poster.jpg" aria-hidden="true" data-story-video>
-      <source src="/video/portada-640.mp4" type="video/mp4" media="(max-width: 800px)" />
-      <source src="/video/portada-1280.mp4" type="video/mp4" />
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="/assets/video/portada-poster.jpg" aria-hidden="true" data-story-video>
+      <source src="/assets/video/portada-640.mp4" type="video/mp4" media="(max-width: 800px)" />
+      <source src="/assets/video/portada-1280.mp4" type="video/mp4" />
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -494,8 +116,8 @@
 
   <section class="parallax-band jardineria" data-parallax aria-label="Para trabajadores">
     <picture class="parallax-media">
-      <source type="image/webp" srcset="/images/jardineria-960.webp 960w, /images/jardineria-1920.webp 1920w" sizes="100vw" />
-      <img src="/images/jardineria-1920.jpg" srcset="/images/jardineria-960.jpg 960w, /images/jardineria-1920.jpg 1920w" sizes="100vw" alt="Jardinero recortando el pasto de un jardín" width="1920" height="1280" loading="lazy" decoding="async" />
+      <source type="image/webp" srcset="/assets/images/jardineria-960.webp 960w, /assets/images/jardineria-1920.webp 1920w" sizes="100vw" />
+      <img src="/assets/images/jardineria-1920.jpg" srcset="/assets/images/jardineria-960.jpg 960w, /assets/images/jardineria-1920.jpg 1920w" sizes="100vw" alt="Jardinero recortando el pasto de un jardín" width="1920" height="1280" loading="lazy" decoding="async" />
     </picture>
     <div class="parallax-overlay"></div>
     <div class="parallax-content">
@@ -512,7 +134,7 @@
       <div class="section-label">Para quién es</div>
       <h2 class="section-title">Dos lados,<br />una plataforma</h2>
       <div class="forwho-grid">
-        <div class="forwho-card accent">
+        <div class="forwho-card accent" id="trabajadores">
           <h3>Para trabajadores</h3>
           <p>Encuentra chambas cerca de ti sin intermediarios. Construye tu reputación con reseñas reales.</p>
           <ul class="forwho-list">
@@ -523,8 +145,8 @@
             <li>Calificaciones que construyen tu reputación</li>
           </ul>
         </div>
-        <div class="forwho-card">
-          <div style="font-size: 36px;">🏠</div>
+        <div class="forwho-card" id="contratar">
+          <div class="audience-icon">🏠</div>
           <h3>Para quien necesita ayuda</h3>
           <p>Publica en minutos y recibe interesados de tu ciudad. Sin llamadas, sin intermediarios.</p>
           <ul class="forwho-list">
@@ -567,8 +189,8 @@
 
   <section class="parallax-band costura" data-parallax aria-label="Talleres y negocios locales">
     <picture class="parallax-media">
-      <source type="image/webp" srcset="/images/costura-960.webp 960w, /images/costura-1920.webp 1920w" sizes="100vw" />
-      <img src="/images/costura-1920.jpg" srcset="/images/costura-960.jpg 960w, /images/costura-1920.jpg 1920w" sizes="100vw" alt="Costurera trabajando en una máquina de coser en un taller" width="1920" height="1280" loading="lazy" decoding="async" />
+      <source type="image/webp" srcset="/assets/images/costura-960.webp 960w, /assets/images/costura-1920.webp 1920w" sizes="100vw" />
+      <img src="/assets/images/costura-1920.jpg" srcset="/assets/images/costura-960.jpg 960w, /assets/images/costura-1920.jpg 1920w" sizes="100vw" alt="Costurera trabajando en una máquina de coser en un taller" width="1920" height="1280" loading="lazy" decoding="async" />
     </picture>
     <div class="parallax-overlay"></div>
     <div class="parallax-content">
@@ -614,10 +236,12 @@
     </div>
   </section>
 
+  </main>
+
   <footer>
     <div class="footer-inner">
       <div class="footer-logo">
-        <img src="/chambita_logo.png" alt="Chambita" />
+        <img src="/assets/images/brand/chambita_logo.png" alt="Chambita" />
         <span>Chambita</span>
       </div>
       <ul class="footer-links">
@@ -630,7 +254,7 @@
     </div>
   </footer>
 
-  <script src="/parallax.js" defer></script>
-  <script src="/story-video.js" defer></script>
+  <script src="/assets/js/parallax.js" defer></script>
+  <script src="/assets/js/story-video.js" defer></script>
 </body>
 </html>

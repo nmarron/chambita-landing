@@ -1,0 +1,53 @@
+/* Shared header and document navigation. */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-header-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.site-header-logo img {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+}
+
+.site-header-logo span {
+  font-size: 16px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #5c18c8, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.3px;
+}
+
+.site-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.site-header-nav a {
+  font-size: 13px;
+  color: var(--faint);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.site-header-nav a:hover,
+.site-header-nav a.active { color: var(--accent); }

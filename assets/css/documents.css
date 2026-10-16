@@ -1,87 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
+/* Document layouts: privacy, terms, account and invitation pages. */
 
-:root {
-  --bg:       #ffffff;
-  --surface:  #f7f5fd;
-  --border:   rgba(92, 24, 200, 0.1);
-  --text:     #1a1a2e;
-  --muted:    #5a5a72;
-  --faint:    #a0a0b8;
-  --accent:   #5c18c8;
-  --accent2:  #7c3aed;
-  --accent-light: #ede8fb;
-  --danger:   #e53e3e;
-  --success:  #38a169;
-  --mono:     'DM Mono', monospace;
-  --sans:     'DM Sans', system-ui, sans-serif;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--sans);
-  font-size: 17px;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.75;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ── Site header ── */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 32px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.site-header-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-
-.site-header-logo img {
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-}
-
-.site-header-logo span {
-  font-size: 16px;
-  font-weight: 800;
-  background: linear-gradient(90deg, #5c18c8, #7c3aed);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: -0.3px;
-}
-
-.site-header-nav {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.site-header-nav a {
-  font-size: 13px;
-  color: var(--faint);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.site-header-nav a:hover,
-.site-header-nav a.active { color: var(--accent); }
-
-/* ── Page layout ── */
 .page {
   max-width: 760px;
   margin: 0 auto;
@@ -422,11 +340,6 @@ hr { border: none; border-top: 1px solid var(--border); margin: 0 0 52px; }
 }
 
 .site-footer p { font-size: 13px; color: var(--faint); }
-
-/* ── Global ── */
-a { color: var(--accent2); text-decoration: none; }
-a:hover { text-decoration: underline; }
-strong { color: var(--text); font-weight: 600; }
 
 /* ── Responsive ── */
 @media (max-width: 540px) {

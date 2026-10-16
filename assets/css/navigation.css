@@ -1,0 +1,73 @@
+/* Landing-only navigation. Shared legal-page headers stay in shared.css. */
+.landing-header {
+  --nav-offset: 20px;
+  position: fixed;
+  inset: var(--nav-offset) 24px auto;
+  margin-inline: auto;
+  z-index: 100;
+  max-width: 1200px;
+  min-height: 72px;
+  padding: 10px 12px 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border: 1px solid rgba(255, 255, 255, .7);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .95);
+  box-shadow: 0 8px 36px rgba(26, 26, 46, .12);
+  transition: max-width .25s ease, min-height .25s ease, box-shadow .25s ease, background .25s ease;
+}
+@supports (backdrop-filter: blur(20px)) {
+  .landing-header { background: rgba(255, 255, 255, .86); backdrop-filter: blur(20px); }
+}
+.landing-header.is-scrolled { max-width: 1080px; min-height: 64px; box-shadow: 0 8px 32px rgba(26, 26, 46, .16); }
+.landing-brand { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; color: var(--text); flex-shrink: 0; }
+.landing-brand img { width: 34px; height: 34px; border-radius: 10px; }
+.landing-brand > span { font-size: 20px; font-weight: 800; letter-spacing: -.7px; }
+.brand-dot { color: var(--accent); }
+.landing-nav, .nav-actions { display: flex; align-items: center; gap: 6px; }
+.nav-link { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 14px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font: 500 14px/1.4 var(--sans); text-decoration: none; cursor: pointer; transition: color .18s, background .18s; white-space: nowrap; }
+.nav-link:hover, .nav-link[aria-current="location"], .nav-link[aria-expanded="true"] { color: var(--accent); background: var(--accent-light); text-decoration: none; }
+.nav-link svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.6; transition: transform .2s; }
+.nav-link[aria-expanded="true"] svg { transform: rotate(180deg); }
+.download-link { display: inline-flex; align-items: center; justify-content: center; gap: 14px; padding: 12px 21px; background: var(--accent); border-radius: 999px; color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; transition: background .18s, transform .18s; }
+.download-link:hover { background: #49119f; transform: translateY(-1px); text-decoration: none; }
+.download-link span { font-size: 19px; line-height: 1; }
+.audience-panel { position: absolute; top: calc(100% + 12px); left: 50%; width: min(590px, calc(100vw - 48px)); transform: translateX(-50%); padding: 24px; border: 1px solid var(--border); border-radius: 24px; background: var(--bg); box-shadow: 0 20px 60px rgba(26, 26, 46, .18); }
+.audience-panel:not([hidden]) { animation: panel-in .18s ease-out; }
+.panel-eyebrow { font: 500 10px/1.5 var(--mono); text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); margin-bottom: 16px; }
+.audience-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.audience-option { display: flex; align-items: flex-start; gap: 12px; padding: 18px 14px; color: var(--text); text-decoration: none; border-radius: 16px; background: var(--surface); transition: background .18s; }
+.audience-option:hover { background: var(--accent-light); text-decoration: none; }
+.audience-symbol { display: grid; place-items: center; flex: 0 0 36px; height: 36px; border-radius: 11px; background: var(--bg); color: var(--accent); font-size: 24px; }
+.audience-option strong { display: block; font-size: 14px; line-height: 1.4; margin-bottom: 6px; }
+.audience-option small { display: block; font-size: 12px; color: var(--muted); line-height: 1.65; }
+.audience-overview { display: flex; justify-content: space-between; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 12px; color: var(--accent); text-decoration: none; }
+.nav-toggle { width: 44px; height: 44px; border: 1px solid var(--border); border-radius: 50%; background: var(--bg); cursor: pointer; display: none; align-items: center; justify-content: center; flex-direction: column; gap: 5px; }
+.nav-toggle span { width: 17px; height: 1.5px; background: var(--text); transition: transform .18s; }
+.nav-toggle[aria-expanded="true"] span:first-child { transform: translateY(3.25px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:last-child { transform: translateY(-3.25px) rotate(-45deg); }
+.landing-header [hidden] { display: none; }
+.skip-link { position: fixed; left: 24px; top: -80px; z-index: 110; padding: 10px 20px; background: var(--bg); color: var(--accent); border-radius: 12px; }
+.skip-link:focus { top: 8px; }
+@keyframes panel-in { from { opacity: 0; translate: 0 -6px; } to { opacity: 1; translate: 0 0; } }
+@media (max-width: 800px) {
+  .landing-header { --nav-offset: 12px; inset-inline: 12px; min-height: 64px; padding: 9px 10px 9px 16px; gap: 8px; }
+  .landing-brand > span { font-size: 18px; }
+  .landing-brand img { width: 30px; height: 30px; }
+  .download-link { font-size: 12px; padding: 11px 14px; gap: 6px; }
+  .nav-actions { gap: 8px; }
+  .nav-ready .nav-toggle { display: flex; }
+  .landing-nav { position: absolute; top: calc(100% + 10px); inset-inline: 0; padding: 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 24px; box-shadow: 0 16px 40px rgba(26, 26, 46, .15); flex-direction: column; align-items: stretch; max-height: calc(100dvh - 110px); overflow-y: auto; }
+  .nav-ready .landing-nav { display: none; }
+  .nav-ready.is-menu-open .landing-nav { display: flex; }
+  .nav-link { width: 100%; justify-content: space-between; padding: 14px 16px; border-radius: 14px; }
+  .audience-panel { position: static; transform: none; width: auto; padding: 10px 8px; border: 0; box-shadow: none; }
+  .audience-options { grid-template-columns: 1fr; }
+  .panel-eyebrow { margin: 4px 8px 12px; }
+}
+@media (max-width: 370px) { .landing-brand > span { font-size: 16px; } .landing-brand { gap: 5px; } .download-link { padding-inline: 10px; } }
+@media (prefers-reduced-motion: reduce) {
+  .landing-header, .landing-header * { transition: none; animation: none; }
+}
