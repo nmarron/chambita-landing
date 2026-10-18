@@ -2,53 +2,277 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="noindex" />
-  <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <title>Te invitaron a Chambita</title>
-  <meta name="description" content="Encuentra chamba o contrata a alguien de confianza. Descarga Chambita y entra con tu código de invitación." />
-  <meta property="og:title" content="Te invitaron a Chambita" />
-  <meta property="og:description" content="Encuentra chamba o contrata a alguien de confianza cerca de ti." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="apple-itunes-app" content="app-id=6762499947" />
+  <title>Chambita — Encuentra quién te ayude o encuentra chamba cerca de ti</title>
+  <meta name="description" content="Chambita es la app para publicar trabajos, encontrar chamba y descubrir trabajadores y negocios de tu ciudad. Plomería, limpieza, construcción, eventos y más. Gratis en iPhone y Android." />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600&display=swap"
+  />
   <link rel="stylesheet" href="/assets/css/base.css" />
   <link rel="stylesheet" href="/assets/css/document-header.css" />
-  <link rel="stylesheet" href="/assets/css/documents.css" />
-  <link rel="stylesheet" href="/assets/css/invite.css" />
-  <script src="/assets/js/invite.js" defer></script>
+  <link rel="stylesheet" href="/assets/css/landing.css" />
+  <link rel="stylesheet" href="/assets/css/navigation.css" />
+  <script src="/assets/js/navigation.js" defer></script>
 </head>
 <body>
-  <header class="site-header">
-    <a href="/" class="site-header-logo"><img src="/assets/images/brand/chambita_logo.png" alt="" /><span>Chambita</span></a>
-    <a class="home-link" href="/">Conoce Chambita</a>
-  </header>
-  <main class="invite-page">
-    <div class="eyebrow">LA CHAMBA ESTÁ CERCA</div>
-    <h1>Te invitaron a <span>Chambita.</span></h1>
-    <p class="intro">Encuentra chamba o contrata a alguien de confianza en tu ciudad.</p>
-    <section class="invite-card" aria-label="Tu invitación">
-      <div id="invitation" hidden>
-        <label for="invite-code">Tu código de invitación</label>
-        <input id="invite-code" readonly spellcheck="false" autocomplete="off" aria-describedby="copy-status" />
-        <button id="copy-code" type="button">Copiar código</button>
-        <p id="copy-status" class="status" role="status" aria-live="polite"></p>
-      </div>
-      <p id="invalid-code" hidden>Este enlace no incluye un código válido. Pide a quien te invitó que lo comparta de nuevo. También puedes descargar Chambita y registrarte sin código.</p>
-      <noscript>Activa JavaScript para ver y copiar el código de esta invitación. También puedes copiarlo del mensaje que recibiste.</noscript>
-      <div class="download">
-        <h2>¿Todavía no tienes la app?</h2>
-        <p id="install-help">Descarga Chambita para empezar.</p>
-        <div class="stores">
-          <a class="store" href="https://apps.apple.com/app/id6762499947"><small>Descárgala en</small><strong>App Store</strong></a>
-          <a class="store" href="https://play.google.com/store/apps/details?id=com.chambita"><small>Descárgala en</small><strong>Google Play</strong></a>
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="landing-header" data-navigation>
+    <a href="/" class="landing-brand" aria-label="Chambita, inicio">
+      <img src="/assets/images/brand/chambita_logo.png" alt="" width="34" height="34" />
+      <span>Chambita<span class="brand-dot">.</span></span>
+    </a>
+    <nav class="landing-nav" id="landing-nav" aria-label="Navegación principal">
+      <a class="nav-link" href="#como-funciona">Cómo funciona</a>
+      <div class="nav-disclosure">
+        <a class="nav-link nav-fallback" href="#para-quien">Para quién</a>
+        <button class="nav-link nav-disclosure-trigger" type="button" hidden aria-expanded="false" aria-controls="audience-panel">
+          Para quién <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg>
+        </button>
+        <div class="audience-panel" id="audience-panel" hidden>
+          <p class="panel-eyebrow">¿Qué quieres hacer primero?</p>
+          <div class="audience-options">
+            <a class="audience-option" href="#contratar">
+              <span class="audience-symbol" aria-hidden="true">⌂</span>
+              <span><strong>Necesito contratar</strong><small>Publica tu chamba y recibe interesados de tu ciudad.</small></span>
+            </a>
+            <a class="audience-option" href="#trabajadores">
+              <span class="audience-symbol" aria-hidden="true">↗</span>
+              <span><strong>Busco chamba</strong><small>Arma tu perfil y aplica a trabajos cerca de ti.</small></span>
+            </a>
+          </div>
+          <a class="audience-overview" href="#negocios">¿Tienes un negocio? Conoce el directorio <span aria-hidden="true">→</span></a>
         </div>
       </div>
-      <div id="installed" class="installed" hidden>
-        <p>¿Ya la tienes instalada?</p>
-        <a id="open-app" class="open-app">Abrir Chambita</a>
-        <p class="open-help">Si no se abre, vuelve al mensaje y toca el enlace de invitación.</p>
+      <a class="nav-link" href="#oficios">Oficios</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#descargar" class="download-link">Descargar <span aria-hidden="true">↗</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="landing-nav" aria-label="Abrir menú" hidden>
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenido">
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="/assets/video/portada-poster.jpg" aria-hidden="true" data-story-video>
+      <source src="/assets/video/portada-640.mp4" type="video/mp4" media="(max-width: 800px)" />
+      <source src="/assets/video/portada-1280.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><span>📍</span> Ya disponible en Baja California</div>
+      <h1>La chamba está<br /><em>cerca de ti</em></h1>
+      <p class="hero-sub">Publica lo que necesitas, encuentra trabajo en tu ciudad o da a conocer tu negocio. Chambita conecta a personas, trabajadores y negocios locales en una sola app.</p>
+      <div class="store-buttons">
+        <a href="https://apps.apple.com/app/id6762499947" class="store-btn">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div class="store-btn-text"><span class="store-btn-sub">Descarga en el</span><span class="store-btn-name">App Store</span></div>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.chambita" class="store-btn">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76c.3.17.64.22.99.14l12.6-7.28-2.75-2.75-10.84 9.89zM.23 1.46C.09 1.76 0 2.1 0 2.5v19c0 .4.09.74.23 1.04l.07.07 10.64-10.64v-.25L.3 1.39l-.07.07zM20.54 10.27l-2.88-1.66-3.08 3.08 3.08 3.08 2.9-1.67c.83-.48.83-1.25-.02-1.83zM3.18.24l12.6 7.28-2.75 2.75L2.19.38C2.52.17 2.9.1 3.18.24z"/></svg>
+          <div class="store-btn-text"><span class="store-btn-sub">Disponible en</span><span class="store-btn-name">Google Play</span></div>
+        </a>
       </div>
-    </section>
-    <p class="closing">Oficios, servicios y oportunidades. Todo cerca de ti.</p>
+      <p class="store-note">iPhone y Android · Descarga gratis</p>
+      <div class="cities">
+        <span class="cities-label">Disponible en</span>
+        <span class="city-pill">Ensenada</span>
+        <span class="city-pill">Tijuana</span>
+        <span class="city-pill">+ más ciudades pronto</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="how" id="como-funciona">
+    <div class="container">
+      <div class="section-label">Cómo funciona</div>
+      <h2 class="section-title">Tres pasos y listo</h2>
+      <p class="section-sub">Publica, recibe interesados y acuerda directo con la persona que elijas.</p>
+      <div class="how-grid">
+        <div class="how-card">
+          <div class="how-num">01</div>
+          <h3>Publica tu chamba</h3>
+          <p>Escribe qué necesitas, en qué ciudad y cuánto pagas. Elige hasta 3 oficios y agrega una foto si quieres.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-num">02</div>
+          <h3>Recibe interesados</h3>
+          <p>Trabajadores de tu ciudad ven tu publicación y aplican con un toque. Revisa sus perfiles, fotos de sus trabajos y reseñas.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-num">03</div>
+          <h3>Platica y acuerda</h3>
+          <p>Escribe por chat o WhatsApp, acuerden precio y horario, y deja una reseña cuando terminen.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-num">+</div>
+          <h3>¿Te urge?</h3>
+          <p>Marca tu publicación como Urgente para que aparezca destacada y la vean primero.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="parallax-band jardineria" data-parallax aria-label="Para trabajadores">
+    <picture class="parallax-media">
+      <source type="image/webp" srcset="/assets/images/jardineria-960.webp 960w, /assets/images/jardineria-1920.webp 1920w" sizes="100vw" />
+      <img src="/assets/images/jardineria-1920.jpg" srcset="/assets/images/jardineria-960.jpg 960w, /assets/images/jardineria-1920.jpg 1920w" sizes="100vw" alt="Jardinero recortando el pasto de un jardín" width="1920" height="1280" loading="lazy" decoding="async" />
+    </picture>
+    <div class="parallax-overlay"></div>
+    <div class="parallax-content">
+      <div class="container">
+        <div class="section-label">Para trabajadores</div>
+        <h2 class="section-title">Tu oficio,<br />tu chamba</h2>
+        <p class="section-sub">Jardineros, plomeros, electricistas, cocineras y más: encuentra chambas en tu ciudad y aplica desde tu celular.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="para-quien">
+    <div class="container">
+      <div class="section-label">Para quién es</div>
+      <h2 class="section-title">Una app,<br />tres formas de usarla</h2>
+      <div class="forwho-grid">
+        <div class="forwho-card" id="contratar">
+          <div class="audience-icon">🏠</div>
+          <h3>Para quien contrata</h3>
+          <p>Publica lo que necesitas y recibe interesados de tu ciudad. Tú eliges con quién trabajar.</p>
+          <ul class="forwho-list">
+            <li>Publica tu chamba en minutos</li>
+            <li>Elige hasta 3 oficios para llegar a las personas correctas</li>
+            <li>Revisa perfiles, fotos y reseñas antes de decidir</li>
+            <li>Chat en la app o WhatsApp, tú decides si compartes tu número</li>
+            <li>Califica al trabajador al terminar</li>
+          </ul>
+        </div>
+        <div class="forwho-card accent" id="trabajadores">
+          <div class="audience-icon">🧰</div>
+          <h3>Para trabajadores</h3>
+          <p>Encuentra chambas cerca de ti y construye tu reputación con cada trabajo.</p>
+          <ul class="forwho-list">
+            <li>Perfil con tus oficios y fotos de tus trabajos</li>
+            <li>Filtra chambas por ciudad y oficio</li>
+            <li>Aplica con un toque y platica por chat</li>
+            <li>Verifica tu identidad y gana la insignia Verificado</li>
+            <li>Los perfiles verificados aparecen primero</li>
+          </ul>
+        </div>
+        <div class="forwho-card" id="negocios">
+          <div class="audience-icon">🏪</div>
+          <h3>Para negocios</h3>
+          <p>Aparece donde tus clientes buscan servicios en su ciudad.</p>
+          <ul class="forwho-list">
+            <li>Perfil con tu ubicación en el mapa</li>
+            <li>Horario, fotos y teléfono</li>
+            <li>Reseñas de tus clientes</li>
+            <li>Mensajes por chat o WhatsApp</li>
+            <li>Verifica tu negocio y genera más confianza</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trades" id="oficios">
+    <div class="container">
+      <div class="section-label">Oficios</div>
+      <h2 class="section-title">Lo que sea<br />que necesites</h2>
+      <p class="section-sub">Del hogar a los eventos: encuentra a quien sabe hacerlo, en tu ciudad.</p>
+      <div class="trades-grid">
+        <div class="trade-pill"><span>🔧</span> Plomería</div>
+        <div class="trade-pill"><span>⚡</span> Electricidad</div>
+        <div class="trade-pill"><span>🪵</span> Carpintería</div>
+        <div class="trade-pill"><span>🎨</span> Pintura</div>
+        <div class="trade-pill"><span>🏗️</span> Albañilería</div>
+        <div class="trade-pill"><span>🧹</span> Limpieza de casas</div>
+        <div class="trade-pill"><span>🌿</span> Jardinería</div>
+        <div class="trade-pill"><span>❄️</span> Aire acondicionado</div>
+        <div class="trade-pill"><span>🚗</span> Mecánica</div>
+        <div class="trade-pill"><span>🚿</span> Lavado de autos</div>
+        <div class="trade-pill"><span>📦</span> Mudanzas</div>
+        <div class="trade-pill"><span>🔒</span> Cerrajería</div>
+        <div class="trade-pill"><span>🎈</span> Animación infantil</div>
+        <div class="trade-pill"><span>🍽️</span> Eventos y banquetes</div>
+        <div class="trade-pill"><span>🎂</span> Repostería</div>
+        <div class="trade-pill"><span>🧵</span> Costura</div>
+        <div class="trade-pill"><span>✂️</span> Belleza y estética</div>
+        <div class="trade-pill"><span>➕</span> Y muchos más</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="parallax-band costura" data-parallax aria-label="Talleres y negocios locales">
+    <picture class="parallax-media">
+      <source type="image/webp" srcset="/assets/images/costura-960.webp 960w, /assets/images/costura-1920.webp 1920w" sizes="100vw" />
+      <img src="/assets/images/costura-1920.jpg" srcset="/assets/images/costura-960.jpg 960w, /assets/images/costura-1920.jpg 1920w" sizes="100vw" alt="Costurera trabajando en una máquina de coser en un taller" width="1920" height="1280" loading="lazy" decoding="async" />
+    </picture>
+    <div class="parallax-overlay"></div>
+    <div class="parallax-content">
+      <div class="container">
+        <div class="section-label">Talleres y negocios locales</div>
+        <h2 class="section-title">Del taller<br />a tu colonia</h2>
+        <p class="section-sub">Talleres, locales y negocios de tu ciudad en un directorio con mapa, fotos, horario y reseñas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-label">Por qué Chambita</div>
+      <h2 class="section-title">Hecho para<br />tu ciudad</h2>
+      <p class="section-sub">Chambita está pensada para el trabajo local en México: rápida, directa y de confianza.</p>
+      <div class="features-grid">
+        <div class="feature-card"><div class="feature-icon">📍</div><h3>Por ciudad y oficio</h3><p>Ve solo chambas, trabajadores y negocios de tu ciudad. Sin ruido, sin resultados de otros estados.</p></div>
+        <div class="feature-card"><div class="feature-icon">✅</div><h3>Insignia Verificado</h3><p>Trabajadores y negocios pueden verificar su identidad para que sepas con quién tratas.</p></div>
+        <div class="feature-card"><div class="feature-icon">💬</div><h3>Chat en la app</h3><p>Habla sin dar tu número. Si quieres, comparte tu WhatsApp para un contacto más rápido.</p></div>
+        <div class="feature-card"><div class="feature-icon">⭐</div><h3>Reseñas</h3><p>Consulta la experiencia de otras personas antes de contratar y construye tu reputación con cada trabajo.</p></div>
+        <div class="feature-card"><div class="feature-icon">🗺️</div><h3>Directorio con mapa</h3><p>Encuentra negocios y trabajadores cerca de ti, con dirección, horario y fotos.</p></div>
+        <div class="feature-card"><div class="feature-icon">🛡️</div><h3>Reporta y bloquea</h3><p>Reporta publicaciones o usuarios y bloquea contactos. Revisamos los reportes para mantener la comunidad segura.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="descargar">
+    <div class="container">
+      <div class="section-label">Descarga la app</div>
+      <h2 class="section-title">Empieza hoy,<br />gratis</h2>
+      <p class="section-sub">Descarga Chambita en iPhone o Android. Durante el lanzamiento, publica tu chamba sin costo.</p>
+      <div class="store-buttons">
+        <a href="https://apps.apple.com/app/id6762499947" class="store-btn">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <div class="store-btn-text"><span class="store-btn-sub">Descarga en el</span><span class="store-btn-name">App Store</span></div>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.chambita" class="store-btn">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M3.18 23.76c.3.17.64.22.99.14l12.6-7.28-2.75-2.75-10.84 9.89zM.23 1.46C.09 1.76 0 2.1 0 2.5v19c0 .4.09.74.23 1.04l.07.07 10.64-10.64v-.25L.3 1.39l-.07.07zM20.54 10.27l-2.88-1.66-3.08 3.08 3.08 3.08 2.9-1.67c.83-.48.83-1.25-.02-1.83zM3.18.24l12.6 7.28-2.75 2.75L2.19.38C2.52.17 2.9.1 3.18.24z"/></svg>
+          <div class="store-btn-text"><span class="store-btn-sub">Disponible en</span><span class="store-btn-name">Google Play</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
   </main>
-  <footer class="invite-footer"><a href="/privacy">Privacidad</a><a href="/terms">Términos</a><a href="/">chambita.app</a></footer>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="/assets/images/brand/chambita_logo.png" alt="Chambita" />
+        <span>Chambita</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="/privacy">Privacidad</a></li>
+        <li><a href="/terms">Términos</a></li>
+        <li><a href="/data-deletion">Eliminación de datos</a></li>
+        <li><a href="mailto:dev@chambita.app">Contacto</a></li>
+      </ul>
+      <p class="footer-copy">© 2026 Chambita · Ensenada, BC</p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/parallax.js" defer></script>
+  <script src="/assets/js/story-video.js" defer></script>
 </body>
 </html>
