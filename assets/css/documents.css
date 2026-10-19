@@ -122,21 +122,21 @@
 }
 
 .data-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
+  position: relative;
+  padding-left: 15px;
   font-size: 16px;
   color: var(--muted);
 }
 
 .data-list li::before {
   content: '';
+  position: absolute;
+  left: 0;
+  top: 11px;
   width: 5px;
   height: 5px;
   border-radius: 50%;
   background: var(--accent);
-  margin-top: 9px;
-  flex-shrink: 0;
 }
 
 /* ── Callout ── */
@@ -189,7 +189,7 @@
 
 .retention-header {
   display: grid;
-  grid-template-columns: 1fr 120px;
+  grid-template-columns: 1fr 140px;
   gap: 16px;
   padding: 8px 16px;
   border-bottom: 1px solid var(--border);
@@ -208,7 +208,7 @@
 
 .retention-row {
   display: grid;
-  grid-template-columns: 1fr 120px;
+  grid-template-columns: 1fr 140px;
   gap: 16px;
   padding: 12px 16px;
   border-radius: 8px;
@@ -224,6 +224,7 @@
   padding: 3px 10px;
   border-radius: 20px;
   text-align: center;
+  white-space: nowrap;
   justify-self: end;
 }
 
@@ -351,3 +352,44 @@ hr { border: none; border-top: 1px solid var(--border); margin: 0 0 52px; }
   .site-header-nav { display: none; }
   .doc-header h1 { font-size: 28px; }
 }
+
+/* ── Spacing helpers (replace former inline styles) ── */
+.spaced-top    { margin-top: 12px; }
+.spaced-top-md { margin-top: 20px; }
+.spaced-top-lg { margin-top: 28px; }
+hr.end { margin-bottom: 0; }
+
+/* ── Steps title ── */
+.steps-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--faint);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* ── Legal entity block ── */
+.entity { margin-bottom: 56px; }
+.entity .callout { margin-top: 0; }
+
+/* ── Sub-headings inside a section ── */
+.section h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 20px 0 8px;
+}
+
+/* ── Legend for the data grid ── */
+.data-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--faint);
+}
+
+.data-legend span { display: flex; align-items: center; gap: 8px; }
+.data-legend .data-item-dot { margin-top: 0; }
