@@ -32,6 +32,10 @@
   object-position: center;
 }
 
+.hero-video:first-child {
+  object-position: 80% center;
+}
+
 .hero-overlay {
   position: absolute;
   inset: 0;
