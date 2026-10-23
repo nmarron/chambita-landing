@@ -32,10 +32,6 @@
   object-position: center;
 }
 
-.hero-video:first-child {
-  object-position: 100% 30%;
-}
-
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -789,9 +785,6 @@ footer {
     display: none;
   }
 
-  .hero-video:first-child {
-    object-position: 50% center;
-  }
 }
 
 /* Hero compacto: fin */
