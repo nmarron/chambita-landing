@@ -788,6 +788,10 @@ footer {
   .hero-video:nth-child(3) {
     display: none;
   }
+
+  .hero-video:first-child {
+    object-position: 100% center;
+  }
 }
 
 /* Hero compacto: fin */
