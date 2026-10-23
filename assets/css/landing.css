@@ -33,7 +33,7 @@
 }
 
 .hero-video:first-child {
-  object-position: 80% center;
+  object-position: 85% center;
 }
 
 .hero-overlay {
@@ -790,7 +790,7 @@ footer {
   }
 
   .hero-video:first-child {
-    object-position: 100% center;
+    object-position: 50% center;
   }
 }
 
