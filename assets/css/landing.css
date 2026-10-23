@@ -15,9 +15,17 @@
 }
 
 
-.hero-video {
+.hero-videos {
   position: absolute;
   inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow: hidden;
+}
+
+.hero-video {
+  display: block;
+  min-width: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;

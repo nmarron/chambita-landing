@@ -114,10 +114,17 @@
 
   <main id="contenido">
   <section class="hero">
-    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="/assets/video/portada-poster.jpg" aria-hidden="true" data-story-video>
-      <source src="/assets/video/portada-640.mp4" type="video/mp4" media="(max-width: 800px)" />
-      <source src="/assets/video/portada-1280.mp4" type="video/mp4" />
-    </video>
+    <div class="hero-videos" aria-hidden="true">
+      <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="/assets/video/hero-1.jpg" data-story-video>
+        <source src="/assets/video/hero-1.mp4" type="video/mp4" />
+      </video>
+      <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="/assets/video/hero-2.jpg" data-story-video>
+        <source src="/assets/video/hero-2.mp4" type="video/mp4" />
+      </video>
+      <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="/assets/video/hero-3.jpg" data-story-video>
+        <source src="/assets/video/hero-3.mp4" type="video/mp4" />
+      </video>
+    </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-badge"><span>📍</span> Ya disponible en Baja California</div>
