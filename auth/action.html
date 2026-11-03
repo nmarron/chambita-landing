@@ -31,8 +31,10 @@
     import {
       getAuth,
       applyActionCode,
+      checkActionCode,
       verifyPasswordResetCode,
       confirmPasswordReset,
+      sendPasswordResetEmail,
     } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
 
     const app = initializeApp({
@@ -58,18 +60,59 @@
       renderState('Algo salió mal', msg);
     }
 
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, char => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+      })[char]);
+    }
+
     if (!mode || !oobCode) {
       renderError('El enlace no es válido o ya expiró. Solicita uno nuevo desde la app.');
 
     } else if (mode === 'verifyEmail') {
       applyActionCode(auth, oobCode)
-        .then(() => renderState('Email verificado ✓', 'Tu correo ha sido verificado. Ya puedes usar Chambita.'))
+        .then(() => renderState('Correo confirmado ✓', 'Tu correo quedó confirmado. Ya puedes regresar a la app de Chambita.'))
         .catch(() => renderError('El enlace no es válido o ya expiró. Solicita uno nuevo desde la app.'));
 
     } else if (mode === 'verifyAndChangeEmail') {
       applyActionCode(auth, oobCode)
         .then(() => renderState('Email actualizado ✓', 'Tu correo ha sido cambiado. Ya puedes iniciar sesión con el nuevo correo.'))
         .catch(() => renderError('El enlace no es válido o ya expiró. Solicita el cambio de correo nuevamente desde la app.'));
+
+    } else if (mode === 'recoverEmail') {
+      // Sent to the previous address after an email change, so its owner can undo it.
+      let restoredEmail = null;
+      checkActionCode(auth, oobCode)
+        .then(info => {
+          restoredEmail = info.data.email;
+          return applyActionCode(auth, oobCode);
+        })
+        .then(() => {
+          el.innerHTML = `
+            <div class="auth-title">Correo restablecido ✓</div>
+            <p class="auth-body">Tu cuenta vuelve a usar <strong>${escapeHtml(restoredEmail)}</strong>.</p>
+            <p class="auth-body">Si tú no pediste el cambio, alguien más pudo entrar a tu cuenta. Cambia tu contraseña ahora.</p>
+            <p class="auth-error" id="err"></p>
+            <button class="auth-btn" id="btn" onclick="handleRecoverReset()">Cambiar mi contraseña</button>
+          `;
+        })
+        .catch(() => renderError('El enlace no es válido o ya expiró. Si no reconoces un cambio en tu cuenta, escríbenos a dev@chambita.app.'));
+
+      window.handleRecoverReset = () => {
+        const err = document.getElementById('err');
+        const btn = document.getElementById('btn');
+        err.textContent = '';
+        btn.disabled = true;
+        btn.textContent = 'Enviando...';
+
+        sendPasswordResetEmail(auth, restoredEmail)
+          .then(() => renderState('Revisa tu correo', `Te enviamos un enlace a <strong>${escapeHtml(restoredEmail)}</strong> para cambiar tu contraseña.`))
+          .catch(() => {
+            err.textContent = 'No pudimos enviar el enlace. Intenta de nuevo en unos minutos.';
+            btn.disabled = false;
+            btn.textContent = 'Cambiar mi contraseña';
+          });
+      };
 
     } else if (mode === 'resetPassword') {
       verifyPasswordResetCode(auth, oobCode)
