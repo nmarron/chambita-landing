@@ -50,12 +50,12 @@
 }
 
 .landing-brand img {
-  width: 34px;
-  height: 34px;
+  width: 48px;
+  height: 48px;
   border-radius: 10px;
 }
 
-.landing-brand > span {
+.landing-brand>span {
   font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.7px;
@@ -314,13 +314,13 @@
     padding: 12px 16px;
   }
 
-  .landing-brand > span {
+  .landing-brand>span {
     font-size: 18px;
   }
 
   .landing-brand img {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
   }
 
   .download-link {
@@ -386,7 +386,7 @@
 }
 
 @media (max-width: 400px) {
-  .landing-brand > span {
+  .landing-brand>span {
     font-size: 16px;
   }
 
@@ -401,6 +401,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .landing-header,
   .landing-header * {
     transition: none;
