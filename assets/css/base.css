@@ -1,15 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
 
 :root {
+  --brand-blue: #102A60;
+  --brand-blue-hover: #18366F;
+  --brand-yellow: #FCD21C;
+  --brand-red: #EF302B;
+  --brand-accent: #2684FF;
   --bg:       #ffffff;
-  --surface:  #f7f5fd;
-  --border:   rgba(92, 24, 200, 0.1);
-  --text:     #1a1a2e;
-  --muted:    #5a5a72;
-  --faint:    #a0a0b8;
-  --accent:   #5c18c8;
-  --accent2:  #7c3aed;
-  --accent-light: #ede8fb;
+  --surface:  #F5F7FC;
+  --border:   rgba(16, 42, 96, 0.1);
+  --text:     #18233F;
+  --muted:    #53617B;
+  --faint:    #65718A;
+  --accent:   var(--brand-blue);
+  --accent2:  #0756AD;
+  --accent-light: #E3F2FF;
   --danger:   #e53e3e;
   --success:  #38a169;
   --mono:     'DM Mono', monospace;

@@ -36,8 +36,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 60% at 50% 45%, rgba(26, 26, 46, 0.4) 0%, rgba(26, 26, 46, 0) 70%),
-    linear-gradient(180deg, rgba(26, 26, 46, 0.35) 0%, rgba(26, 26, 46, 0.40) 55%, rgba(60, 14, 130, 0.82) 100%);
+    radial-gradient(ellipse 70% 60% at 50% 45%, rgba(16, 42, 96, 0.4) 0%, rgba(16, 42, 96, 0) 70%),
+    linear-gradient(180deg, rgba(16, 42, 96, 0.35) 0%, rgba(16, 42, 96, 0.40) 55%, rgba(16, 42, 96, 0.82) 100%);
   pointer-events: none;
 }
 
@@ -76,7 +76,7 @@
 
 .hero h1 em {
   font-style: normal;
-  background: linear-gradient(90deg, #c9b0ff, #ffffff);
+  background: linear-gradient(90deg, #FCD21C, #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -628,8 +628,8 @@ section {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(26, 26, 46, 0.82) 0%, rgba(26, 26, 46, 0.45) 45%, rgba(26, 26, 46, 0) 75%),
-    linear-gradient(0deg, rgba(92, 24, 200, 0.35) 0%, rgba(92, 24, 200, 0) 55%);
+    linear-gradient(90deg, rgba(16, 42, 96, 0.82) 0%, rgba(16, 42, 96, 0.45) 45%, rgba(16, 42, 96, 0) 75%),
+    linear-gradient(0deg, rgba(16, 42, 96, 0.35) 0%, rgba(16, 42, 96, 0) 55%);
   pointer-events: none;
 }
 
@@ -745,7 +745,7 @@ footer {
   }
 
   .parallax-overlay {
-    background: linear-gradient(0deg, rgba(26, 26, 46, 0.9) 0%, rgba(26, 26, 46, 0.55) 50%, rgba(26, 26, 46, 0.1) 100%);
+    background: linear-gradient(0deg, rgba(16, 42, 96, 0.9) 0%, rgba(16, 42, 96, 0.55) 50%, rgba(16, 42, 96, 0.1) 100%);
   }
 }
 

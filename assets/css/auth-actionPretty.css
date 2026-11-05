@@ -7,9 +7,9 @@
   --text:       #111116;
   --muted:      #717180;
   --faint:      #b8b8c8;
-  --accent:     #fb923c;
-  --pink:       #f472b6;
-  --purple:     #a78bfa;
+  --accent:     #FCD21C;
+  --brand-red:       #EF302B;
+  --brand-blue:     #102A60;
   --danger:     #ef4444;
   --danger-bg:  #fef2f2;
   --success:    #16a34a;
@@ -61,7 +61,7 @@ main {
 .wordmark-name {
   font-size: 17px;
   font-weight: 700;
-  background: linear-gradient(90deg, #fb923c, #f472b6, #a78bfa);
+  background: linear-gradient(90deg, #FCD21C, #EF302B, #102A60);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: -0.2px;
@@ -110,7 +110,7 @@ main {
   width: 28px;
   height: 28px;
   border: 2.5px solid var(--border);
-  border-top-color: var(--pink);
+  border-top-color: var(--brand-red);
   border-radius: 50%;
   animation: spin 0.75s linear infinite;
 }
@@ -167,7 +167,7 @@ main {
 }
 
 .field input::placeholder { color: var(--faint); }
-.field input:focus { border-color: var(--pink); background: var(--bg); }
+.field input:focus { border-color: var(--brand-red); background: var(--bg); }
 
 .field-input-wrap { position: relative; }
 .field-input-wrap input { padding-right: 44px; }
@@ -229,7 +229,7 @@ main {
   height: 46px;
   border-radius: 11px;
   border: none;
-  background: linear-gradient(135deg, var(--accent) 0%, var(--pink) 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--brand-red) 100%);
   color: #fff;
   font-family: var(--sans);
   font-size: 15px;

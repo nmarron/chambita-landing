@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
-  <title>Chambita</title>
+  <title>Chamba Go</title>
   <link rel="stylesheet" href="/assets/css/base.css" />
   <link rel="stylesheet" href="/assets/css/document-header.css" />
   <link rel="stylesheet" href="/assets/css/documents.css" />
@@ -15,7 +15,7 @@
 <body>
 
   <div class="auth-wrap">
-    <img src="/assets/images/brand/CH_Black.png" alt="Chambita" class="auth-logo" />
+    <img src="/assets/images/brand/CH_Black.png" alt="Chamba Go" class="auth-logo" />
     <div id="content">
       <div class="spinner"></div>
       <p class="auth-body">Un momento...</p>
@@ -71,7 +71,7 @@
 
     } else if (mode === 'verifyEmail') {
       applyActionCode(auth, oobCode)
-        .then(() => renderState('Correo confirmado ✓', 'Tu correo quedó confirmado. Ya puedes regresar a la app de Chambita.'))
+        .then(() => renderState('Correo confirmado ✓', 'Tu correo quedó confirmado. Ya puedes regresar a la app de Chamba Go.'))
         .catch(() => renderError('El enlace no es válido o ya expiró. Solicita uno nuevo desde la app.'));
 
     } else if (mode === 'verifyAndChangeEmail') {
@@ -119,7 +119,7 @@
         .then(() => {
           el.innerHTML = `
             <div class="auth-title">Nueva contraseña</div>
-            <p class="auth-body" style="margin-bottom: 20px;">Ingresa tu nueva contraseña para Chambita.</p>
+            <p class="auth-body" style="margin-bottom: 20px;">Ingresa tu nueva contraseña para Chamba Go.</p>
             <div class="auth-form">
               <div class="auth-field">
                 <label for="pwd">Nueva contraseña</label>
@@ -178,7 +178,7 @@
       btn.textContent = 'Cambiando...';
 
       confirmPasswordReset(auth, oobCode, pwd)
-        .then(() => renderState('Contraseña actualizada ✓', 'Tu contraseña ha sido cambiada. Ya puedes iniciar sesión en Chambita.'))
+        .then(() => renderState('Contraseña actualizada ✓', 'Tu contraseña ha sido cambiada. Ya puedes iniciar sesión en Chamba Go.'))
         .catch(() => {
           err.textContent = 'Error al cambiar la contraseña. El enlace puede haber expirado.';
           btn.disabled = false;
